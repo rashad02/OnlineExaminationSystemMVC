@@ -1,0 +1,151 @@
+﻿@model Models.Question
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section Content{
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+
+<link href="~/Content/Exam/QuestionTable.css" rel="stylesheet" />
+<link href="~/Content/MDB-Free_4.5.10/css/mdb.min.css" rel="stylesheet" />
+
+
+}
+
+
+    <div class="form-horizontal ">
+        <div class="form-group">
+            <h1 style="text-align: center" class="col-md-10 ">Question Summary</h1>
+
+            <div class="col-md-2 form-group " style="margin-top: 30px">
+                <a href="@Url.Action("QuestionAnswerEntry", "Exam")" class="elements"><span class="glyphicon glyphicon-chevron-left">Back</span></a>
+            </div>
+        </div>
+            <table class="table table-bordered table-hover table-striped table-responsive" id="QATable" style="border: 1px solid; height: 200px">
+
+                <thead>
+                    <tr style="font-weight: bold">
+                        <td>Order</td>
+                        <td>Question</td>
+                        @*<td>Option Type</td>*@
+                        <td>Options</td>
+                        <td>Marks</td>
+                        @*<td>Exam Name</td>*@
+                        <td>Action</td>
+                    </tr>
+                </thead>
+
+                <tbody id="QuestionDetailsBody"></tbody>
+            </table>
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="OptionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog form-login" role="document">
+                <!--Content-->
+                <div class="modal-content card card-image" style="background-image: url('~/Content/ModalOptions.jpg')"/>
+                 <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+                        <!--Header-->
+                        <div class="modal-header text-center pb-4">
+                            <h3 class="modal-title w-100 white-text font-weight-bold" id="myModalLabel">
+                                <strong>Options for Question</strong>
+                            </h3>
+                            <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <!--Body-->
+                        <div class="modal-body">
+                            <!--Body-->
+                            <div class="md-form mb-5">
+                                <table class="table table-hover  table-responsive" style=" border: 1px solid; height: 300px">
+                                    <thead style="text-align: center">
+                                    <tr style="font-weight: bold">
+                                        <td>Order</td>
+                                        <td>Is Answer</td>
+                                        <td>Option</td>
+
+                                    </tr>
+                                    </thead>
+
+                                    <tbody id="OptionsModal" style="text-align: center;"></tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        @*<div class="modal fade" id="OptionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Option of Question</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+@section scripts{
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+@*<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>*@
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/AppData/Exam/QuestionSummary.js"></script>
+
+}
+ 
+

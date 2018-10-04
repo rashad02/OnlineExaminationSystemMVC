@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+       
+           
+
+
+            <div class="form-horizontal">
+                <h2 class="page-header"> Organization Entry</h2>
+                <hr />
+                @using (Html.BeginForm("OrganizationEntry","Organization", FormMethod.Post, new { enctype ="multipart/form-data" }))
+
+                { 
+                    <div class="form-group">
+                        <label for="Name" class="col-md-2 col-md-offset-1"> Name: </label>
+                        <div class="col-md-8">
+                            <input type="text" id="Name" name="Name" class="form-control" />
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                <label for="RegNO" class="col-md-2"> Registration No: </label>
+                <div class="col-md-10">
+
+                    @Html.TextBoxFor(c => c.RegNo, new { @id = "regNoTextBox", @class = "form-control", @readonly = "readonly" })
+
+                </div>
+            </div>*@
+                    <div class="form-group">
+                        <label for="Code" class="col-md-2 col-md-offset-1"> Code: </label>
+                        <div class="col-md-8">
+                            <input type="text" id="Code" name="Code" class="form-control" readonly="readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Address" class="col-md-2 col-md-offset-1"> Address: </label>
+                        <div class="col-md-8">
+                            <input type="text" id="Address" name="Address" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ContactNo" class="col-md-2 col-md-offset-1"> Contact No: </label>
+                        <div class="col-md-8">
+                            <input type="text" id="ContactNo" name="ContactNo" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="About" class="col-md-2 col-md-offset-1"> About: </label>
+                        <div class="col-md-8">
+                            <textarea rows="3" id="About" name="About" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Logo" class="col-md-2 col-md-offset-1"> Logo: </label>
+                        <div class="col-md-8">
+                            <input type="file" id="Image" name="Image" class="form-control"  />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row col-md-offset-3">
+                            <input type="submit" value="Save" id="SaveButton" class="btn btn-primary" style="margin-left: 16px" />
+                        </div>
+                    </div>
+                }
+
+</div>
+            
+       
+    
+@section scripts{
+    @*<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>*@
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/AppData/Organization/OrganizationEntry.js"></script>
+}
+   
+   
+   
+

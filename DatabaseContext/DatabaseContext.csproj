@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C318C1EF-5061-484E-AA5F-80493B8638CC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DatabaseContext</RootNamespace>
+    <AssemblyName>DatabaseContext</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\201809231622377_initial-migration.cs" />
+    <Compile Include="Migrations\201809231622377_initial-migration.Designer.cs">
+      <DependentUpon>201809231622377_initial-migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809231627433_student-manytomany-organization-added.cs" />
+    <Compile Include="Migrations\201809231627433_student-manytomany-organization-added.Designer.cs">
+      <DependentUpon>201809231627433_student-manytomany-organization-added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809231728467_model-updated.cs" />
+    <Compile Include="Migrations\201809231728467_model-updated.Designer.cs">
+      <DependentUpon>201809231728467_model-updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809240944480_duration-deleted.cs" />
+    <Compile Include="Migrations\201809240944480_duration-deleted.Designer.cs">
+      <DependentUpon>201809240944480_duration-deleted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809240945304_duration-updated.cs" />
+    <Compile Include="Migrations\201809240945304_duration-updated.Designer.cs">
+      <DependentUpon>201809240945304_duration-updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241236396_DBSET-Question-Answer-Added.cs" />
+    <Compile Include="Migrations\201809241236396_DBSET-Question-Answer-Added.Designer.cs">
+      <DependentUpon>201809241236396_DBSET-Question-Answer-Added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241306390_Option-Order-Added.cs" />
+    <Compile Include="Migrations\201809241306390_Option-Order-Added.Designer.cs">
+      <DependentUpon>201809241306390_Option-Order-Added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241409385_allow-html-to-QuestionText.cs" />
+    <Compile Include="Migrations\201809241409385_allow-html-to-QuestionText.Designer.cs">
+      <DependentUpon>201809241409385_allow-html-to-QuestionText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809261325526_lazy-loading-enabled.cs" />
+    <Compile Include="Migrations\201809261325526_lazy-loading-enabled.Designer.cs">
+      <DependentUpon>201809261325526_lazy-loading-enabled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809280757471_student-exam-relation-added.cs" />
+    <Compile Include="Migrations\201809280757471_student-exam-relation-added.Designer.cs">
+      <DependentUpon>201809280757471_student-exam-relation-added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809281008392_examObtainedMarksAdded.cs" />
+    <Compile Include="Migrations\201809281008392_examObtainedMarksAdded.Designer.cs">
+      <DependentUpon>201809281008392_examObtainedMarksAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809290627000_Result-Model-Added.cs" />
+    <Compile Include="Migrations\201809290627000_Result-Model-Added.Designer.cs">
+      <DependentUpon>201809290627000_Result-Model-Added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809290628059_Result-Model-Added2.cs" />
+    <Compile Include="Migrations\201809290628059_Result-Model-Added2.Designer.cs">
+      <DependentUpon>201809290628059_Result-Model-Added2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809291225454_Result-Model-Added3.cs" />
+    <Compile Include="Migrations\201809291225454_Result-Model-Added3.Designer.cs">
+      <DependentUpon>201809291225454_Result-Model-Added3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809291421571_Organization-added.cs" />
+    <Compile Include="Migrations\201809291421571_Organization-added.Designer.cs">
+      <DependentUpon>201809291421571_Organization-added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809300017425_Organization-Logo-Added.cs" />
+    <Compile Include="Migrations\201809300017425_Organization-Logo-Added.Designer.cs">
+      <DependentUpon>201809300017425_Organization-Logo-Added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809300133568_Student-Image-Added.cs" />
+    <Compile Include="Migrations\201809300133568_Student-Image-Added.Designer.cs">
+      <DependentUpon>201809300133568_Student-Image-Added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809300204303_Admin-TableAdded.cs" />
+    <Compile Include="Migrations\201809300204303_Admin-TableAdded.Designer.cs">
+      <DependentUpon>201809300204303_Admin-TableAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="OnlineExaminationSystem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{846217a3-aa40-4405-ad41-bc6ca342ce64}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809231622377_initial-migration.resx">
+      <DependentUpon>201809231622377_initial-migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809231627433_student-manytomany-organization-added.resx">
+      <DependentUpon>201809231627433_student-manytomany-organization-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809231728467_model-updated.resx">
+      <DependentUpon>201809231728467_model-updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809240944480_duration-deleted.resx">
+      <DependentUpon>201809240944480_duration-deleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809240945304_duration-updated.resx">
+      <DependentUpon>201809240945304_duration-updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241236396_DBSET-Question-Answer-Added.resx">
+      <DependentUpon>201809241236396_DBSET-Question-Answer-Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241306390_Option-Order-Added.resx">
+      <DependentUpon>201809241306390_Option-Order-Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241409385_allow-html-to-QuestionText.resx">
+      <DependentUpon>201809241409385_allow-html-to-QuestionText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809261325526_lazy-loading-enabled.resx">
+      <DependentUpon>201809261325526_lazy-loading-enabled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809280757471_student-exam-relation-added.resx">
+      <DependentUpon>201809280757471_student-exam-relation-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809281008392_examObtainedMarksAdded.resx">
+      <DependentUpon>201809281008392_examObtainedMarksAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809290627000_Result-Model-Added.resx">
+      <DependentUpon>201809290627000_Result-Model-Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809290628059_Result-Model-Added2.resx">
+      <DependentUpon>201809290628059_Result-Model-Added2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809291225454_Result-Model-Added3.resx">
+      <DependentUpon>201809291225454_Result-Model-Added3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809291421571_Organization-added.resx">
+      <DependentUpon>201809291421571_Organization-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809300017425_Organization-Logo-Added.resx">
+      <DependentUpon>201809300017425_Organization-Logo-Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809300133568_Student-Image-Added.resx">
+      <DependentUpon>201809300133568_Student-Image-Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809300204303_Admin-TableAdded.resx">
+      <DependentUpon>201809300204303_Admin-TableAdded.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

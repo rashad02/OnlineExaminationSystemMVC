@@ -1,0 +1,20 @@
+﻿body {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.table {
+    width: 100%;
+    height: 100%;
+    background-color:rgba(74, 95, 86, 0.55)
+}
+.table td {
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+    
+}
+.table.table a {
+    margin: 10px;
+    color: #212529;
+}

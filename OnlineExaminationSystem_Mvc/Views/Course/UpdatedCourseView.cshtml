@@ -1,0 +1,121 @@
+﻿@model OnlineExaminationSystem_Mvc.ViewModels.Course.CourseEntryVm
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+
+@*<div class="container">
+
+    <h3>Course Information</h3>
+    <br/>
+    <hr/>
+
+    <form method="POST">
+        <div class="row">
+            <div class="panel-group">
+                <div class="panel panel-primary  ">
+                    <div class="panel-heading">
+                        Course Name: @Model.CourseName
+                    </div>
+
+                    <div class="panel-body">
+                        <p class="form-group-lg" style="text-align: center; font-size: 24px;font-weight: bold">
+                            Organization Name: @{
+                                                   string Name = "";
+                                                   foreach (var organizationName in Model.Organizations)
+                                                   {
+                                                       Name = organizationName.Name;
+                                                   }
+                                                   @Name
+                                               }
+                        </p>
+                        <p class="col-md-offset-2" style=" font-size: 20px;font-weight: bold"> CourseCode: @Model.CourseCode</p>
+                        <p class="col-md-offset-2"  style=" font-size: 20px;font-weight: bold"> Duration: @Model.Duration</p>
+                        <p class="col-md-offset-2"  style=" font-size: 20px;font-weight: bold"> Credit: @Model.Credit</p>
+                        
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+
+
+</div>*@
+   
+        <form method="POST">
+            <h2> Course Entry Update</h2>
+            <hr />
+
+
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="OrganizationId" class="col-md-2"> Organization: </label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(c => c.OrganizationId, Model.SelectListItems, "----Select---", new { @class = "form-control" })
+                        @Html.HiddenFor(c => c.OrganizationId)
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="CourseName" class="col-md-2"> Name: </label>
+                    <div class="col-md-10">
+                        <input type="text" id="CourseName" name="CourseName" value="@Model.CourseName" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="CourseCode" class="col-md-2"> Course Code: </label>
+                    <div class="col-md-10">
+                        <input type="text" id="CourseCode" name="CourseCode" value="@Model.CourseCode" class="form-control" />
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Duration" class="col-md-2"> Duration: </label>
+                    <div class="col-md-10">
+                        <input type="text" id="Duration" name="Duration" value="@Model.Duration" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Credit" class="col-md-2"> Credit: </label>
+                    <div class="col-md-10">
+                        <input type="text" id="Credit" name="Credit" value="@Model.Credit" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Outline" class="col-md-2"> Outline: </label>
+                    <div class="col-md-10">
+                        <input type="text" id="Outline" name="Outline" value="@Model.Outline" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Tags" class="col-md-2"> Tags: </label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(c => c.TagsId, Model.SelectTagListItems, "----Select---", new { @class = "form-control", @id = "Tags", @name = "Tags" })
+                        @Html.HiddenFor(c => c.TagsId)
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="row" style="margin-left: 18px">
+                        <input type="submit" value="Update" id="UpdateButton" class="btn btn-info col-md-offset-2" />
+                    </div>
+                </div>
+
+
+            </div>
+        </form>
+
+ 

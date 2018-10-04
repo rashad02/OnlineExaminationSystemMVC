@@ -1,0 +1,64 @@
+﻿@model List<OnlineExaminationSystem_Mvc.ViewModels.ResultVm>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    @section Content{
+        @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    }
+  
+    <div class="form-horizontal">
+        <h1> Result </h1>
+
+        <table id="ResultTable" class="table table-striped table-bordered " style="width: 100%">
+            <thead>
+                <tr>
+                    <th class="th-">
+                        SL
+                        
+                    </th>
+                    <th class="th-lg">
+                        Course Name
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                    <th class="th-lg">
+                        Exam
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                    <th class="th">
+                        Obtained Mark
+                        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="SearchTableContent">
+            @{ int i = 1;}
+               
+                    @foreach (var result in Model)
+{
+    <tr>
+
+        <td> @i @{i++;}</td>
+        <td> @result.CourseName</td>
+        <td>
+            @{
+    string examName = result.Code;
+            }@examName
+        </td>
+        <td> @result.ObtainedMarks</td>
+    </tr>
+}
+                
+            </tbody>
+        </table>
+    </div>
+
+@section scripts{
+    @*<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>*@
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+}

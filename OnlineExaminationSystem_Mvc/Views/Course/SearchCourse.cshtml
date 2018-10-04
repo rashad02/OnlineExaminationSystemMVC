@@ -1,0 +1,115 @@
+﻿
+@model OnlineExaminationSystem_Mvc.ViewModels.Course.CourseEntryVm
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    @*<title>Search Course</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    @*<link href="~/Content/MDB-Free_4.5.10/css/mdb.min.css" rel="stylesheet" />
+    <link href="~/Content/MDB-Free_4.5.10/css/style.css" rel="stylesheet" />
+    <link href="~/Content/MDB-Free_4.5.10/css/addons/datatables.min.css" rel="stylesheet" />*@
+
+        <form method="POST">
+            <h2> Course Search Criteria</h2>
+            <hr />
+
+
+
+            <div class="form-horizontal">
+
+
+
+
+                <div class="form-group">
+                    <label for="CourseName" class="col-md-2"> Name: </label>
+                    <div class="col-md-4">
+                        <input type="text" id="CourseName" name="CourseName" class=" form-control form-group"/>
+                    </div>
+
+
+                    <label for="CourseCode" class="col-md-2"> Course Code: </label>
+                    <div class="col-md-4">
+                        <input type="text" id="CourseCode" name="CourseCode" class="form-control form-group"/>
+
+                    </div>
+
+
+                    <label for="Duration" class="col-md-2"> Duration: </label>
+                    <div class="col-md-4">
+                        <input type="text" id="Duration" name="Duration" class="form-control form-group"/>
+                    </div>
+
+
+                    <label for="Credit" class="col-md-2"> Credit: </label>
+                    <div class="col-md-4">
+                        <input type="text" id="Credit" name="Credit" class="form-control form-group"/>
+                    </div>
+
+
+                    <label for="Outline" class="col-md-2"> Outline: </label>
+                    <div class="col-md-4">
+                        <input type="text" id="Outline" name="Outline" class="form-control form-group"/>
+                    </div>
+
+
+                    <div class="col-md-2 col-md-offset-2">
+                        <input type="button" id="SeachButton" name="SeachButton" value="Search" class="form-control form-group btn btn-info"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Organizations" class="col-md-2"> Search by Organization: </label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(c => c.OrganizationId, Model.SelectListItems, "----Select---", new { @class = "form-control form-group", @id = "Organization" })
+                        @* @Html.HiddenFor(c => c.OrganizationId)*@
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <table id="SearchResultTable" class="table table-striped table-bordered " style="width: 100%">
+            <thead>
+            <tr>
+                <th class="th-">
+                    SL
+                    
+                </th>
+                <th class="th-lg">
+                    Name
+                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                </th>
+                <th class="th-lg">
+                    Course Duraion
+                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                </th>
+                <th class="th">
+                    Trainers
+                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                </th>
+                <th class="th">
+                    Action
+                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                </th>
+
+            </tr>
+            </thead>
+            <tbody id="SearchTableContent">
+               
+            </tbody>
+        </table>
+
+@section scripts{
+    @*<script type="text/javascript" src="~/Content/MDB-Free_4.5.10/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="~/Content/MDB-Free_4.5.10/js/bootstrap.min.js"></script>*@
+@*<script type="text/javascript" src="~/Content/MDB-Free_4.5.10/js/popper.min.js"></script>
+
+    <script type="text/javascript" src="~/Content/MDB-Free_4.5.10/js/mdb.min.js" ></script>
+    <script type="text/javascript" src="~/Content/MDB-Free_4.5.10/js/addons/datatables.min.js"></script>*@
+<script type="text/javascript" src="~/Scripts/AppData/Course/SearchCourse.js"></script>
+
+}
+
+

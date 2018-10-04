@@ -1,0 +1,94 @@
+﻿@using System.Web.Mvc.Html
+@using Models
+@model OnlineExaminationSystem_Mvc.ViewModels.Course.CourseEntryVm
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+    <form method="POST">
+        <h2> Course Entry</h2>
+        <hr/>
+
+
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="OrganizationId" class="col-md-2"> Organization: </label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(c => c.OrganizationId, Model.SelectListItems, "----Select---", new { @class = "form-control" })
+                    @Html.HiddenFor(c => c.OrganizationId)
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="CourseName"  class="col-md-2"> Name: </label>
+                <div class="col-md-10">
+                    <input type="text" id="CourseName" name="CourseName" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="CourseCode" class="col-md-2"> Course Code: </label>
+                <div class="col-md-10">
+                    <input type="text" id="CourseCode" name="CourseCode" class="form-control" />
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Duration" class="col-md-2"> Duration: </label>
+                <div class="col-md-10">
+                    <input type="text" id="Duration" name="Duration" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Credit" class="col-md-2"> Credit: </label>
+                <div class="col-md-10">
+                    <input type="text" id="Credit" name="Credit" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Outline" class="col-md-2"> Outline: </label>
+                <div class="col-md-10">
+                    <input type="text" id="Outline" name="Outline" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Tag" class="col-md-2"> Tags: </label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(c => c.TagsId, Model.SelectTagListItems, "----Select---", new { @class = "form-control", @id = "Tags", @name = "Tags" })
+                    @Html.HiddenFor(c => c.TagsId)
+                  
+
+
+                </div>
+
+            </div>
+
+            
+
+            <div class="form-group">
+                <div class="row " style="margin-left: 17px">
+                    <input type="submit" value="Save" id="SaveButton" class="btn btn-primary col-md-offset-2" />
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+
+
+
+@section scripts{
+    @*<script src="~/Scripts/jquery-1.9.1.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<script src="~/Scripts/AppData/Course/Entry.js"></script>
+
+}
+

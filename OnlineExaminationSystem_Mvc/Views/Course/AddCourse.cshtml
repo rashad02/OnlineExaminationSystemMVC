@@ -1,0 +1,267 @@
+﻿@using System.Web.Mvc.Html
+@using Models
+@model OnlineExaminationSystem_Mvc.ViewModels.Course.CourseEntryVm
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section Content
+{
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">*@
+<link href="~/Content/AddCourse/TabBarCSS.css" rel="stylesheet" />
+}
+<form method="POST">
+
+            <div class="form-group">
+                <div class="col-md-8">
+                    <h2> Course Details</h2>
+                </div>
+                <div class="col-md-2 form-group " style="margin-top: 30px">
+                    <a href="@Url.Action("UpdatedCourseView", "Course",@Model)" class="elements"><span class="glyphicon glyphicon-chevron-left">Edit</span></a>
+                </div>
+
+                <div class="col-md-2 form-group " style="margin-top: 30px">
+                    <a href="@Url.Action("SearchCourse", "Course")" class="elements"> <span class="glyphicon glyphicon-chevron-left">Search</span></a>
+                </div>
+            </div>
+        </form>
+            <div>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#tab1">Basic Information</a>
+                    </li>
+                    <li>
+                        <a href="#tab2">Assign Trainers</a>
+                    </li>
+                    <li>
+                        <a href="#tab3">Create Exams</a>
+                    </li>
+                </ul>
+            </div>
+            <section id="tab1" class="tab-content active">
+                @if (Model.CourseName == null)
+                {
+                    <h4> No Course Selected </h4>
+                }
+                else
+                {
+                    <div class="container">
+                        <h1>Course Information</h1>
+                        <br />
+                        <hr />
+
+                        <form method="POST">
+                            <div class="row">
+                                <div class="form-group col-md-10">
+                                    <label class="form-group  col-md-2 col-md-offset-4">Organization</label>
+                                    <p class=" col-md-6" style="font-size: 24px; font-weight: bold">
+                                        @{
+                    string Name = "";
+                    foreach (var organizationName in Model.Organizations)
+                    {
+                        Name = organizationName.Name;
+                    }
+                    @Name
+                                        }
+                                    </p>
+                                </div>
+                                <div class="form-group col-md-10">
+                                    <label class="form-group col-md-2 col-md-offset-4"> Course Name:</label>
+                                    <p class="col-md-6" style="font-size: 20px; font-weight: bold"> @Model.CourseName</p>
+                                </div>
+                                <div class="form-group col-md-10">
+                                    <label class="form-group  col-md-2 col-md-offset-4"> Course Code</label>
+                                    <p class="col-md-6" style="font-size: 20px; font-weight: bold">@Model.CourseCode</p>
+                                </div>
+                                <div class="form-group col-md-10">
+                                    <label class="form-group  col-md-2 col-md-offset-4">Duration</label>
+                                    <p class="col-md-6" style="font-size: 20px; font-weight: bold">@Model.Duration</p>
+                                </div>
+                                <div class="form-group col-md-10">
+                                    <label class="form-group  col-md-2 col-md-offset-4"> Credit</label>
+                                    <p class="col-md-6" style="font-size: 20px; font-weight: bold"> @Model.Credit</p>
+                                </div>
+                            </div>
+
+
+
+
+                        </form>
+
+
+
+                    </div>
+                }
+
+
+            </section>
+            <section id="tab2" class="tab-content hide">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label for="Trainer" class="col-md-2"> Trainer: </label>
+                        <div class="col-md-6" id="TrainerDropDown">
+
+                            @Html.DropDownListFor(c => c.SelectTrainerListItem, Model.SelectTrainerListItem, "----Select---", new { @id = "Trainer", @class = "form-control" })
+                            @Html.HiddenFor(c => c.TrainerId)
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2 form-group ">
+                            <button class="btn btn-primary" id="AddTrainerButton">Add <span class="glyphicon glyphicon-chevron-right"></span></button>
+                        </div>
+                    </div>
+                    <div class="panel-group">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <div class="panel-title">Added Trainer for @Model.CourseName</div>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-bordered table-hover table-striped table-responsive">
+
+                                    <thead>
+                                        <tr style="background-color: green; color: white; font-weight: bold">
+                                            <td>Sl</td>
+                                            <td>Name</td>
+                                            <td>Lead Trainer?</td>
+                                            <td>Action</td>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="tranierDetailsBody"></tbody>
+                                </table>
+                                <div class="form-group">
+                                    <div class="row" style="margin-left: 18px">
+                                        <input type="submit" value="Save" id="SaveTrainerButton" class="btn btn-info col-md-offset-2" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        <section id="tab3" class="tab-content hide">
+
+
+            <div class="container">
+                <form method="POST">
+                    <h2> Exam Entry</h2>
+                    <hr />
+
+
+
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="OrganizationDD" class="col-md-2"> Organization: </label>
+                            <div class="col-md-10">
+                                @{
+                                    string Organization = "";
+
+                                    foreach (var organizationName in Model.Organizations)
+                                    {
+                                        Organization = organizationName.Name;
+
+                                    }
+                                }
+                                @Html.DropDownListFor(c => c.SelectListItems, Model.SelectListItems, Organization, new { @id = "OrganizationDD", @class = "form-control", @disabled = true })
+
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="CourseId" class="col-md-2"> Course: </label>
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(c => c.SelectCourseSelectListItemsListItems, Model.SelectCourseSelectListItemsListItems, @Model.CourseName, new { @id = "CourseTB", @class = "form-control", @disabled = true })
+
+
+
+
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="ExamType" class="col-md-2"> Exam Type </label>
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(c => c.ExamTypeSelectListItems, Model.ExamTypeSelectListItems, "----Select---", new { @class = "form-control", @id = "ExamTypeDD" })
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ExamCode" class="col-md-2"> Code: </label>
+                            <div class="col-md-10">
+                                <input type="text" id="ExamCode" name="ExamCode" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Topic" class="col-md-2"> Topic: </label>
+                            <div class="col-md-10">
+                                <input type="text" id="Topic" name="Topic" class="form-control" />
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="FullMarks" class="col-md-2"> Full Marks: </label>
+                            <div class="col-md-10">
+                                <input type="text" id="FullMarks" name="FullMarks" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Duration" class="col-md-2"> Duration: </label>
+                            <div class="col-xs-2">
+                                <input class="form-control" id="Hour" name="Hour" type="text">
+                            </div>
+                            <label class="col-sm-1" style="line-height: 2.5; width: 0%"> : </label>
+                            <div class="col-xs-2 col-md-offset-0">
+
+                                <input class="form-control" id="Minute" name="Minute" type="text">
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-md-3" style="margin-left: 17%">
+                                <input type="button" id="SaveExamButton" value="Save" class="form-control btn btn-primary" />
+                            </div>
+                        </div>
+
+
+
+                        <table class="table table-bordered table-hover table-striped table-responsive" id="OptionTable">
+
+                            <thead>
+                                <tr style="background-color: blue; color: white; font-weight: bold">
+                                    <td>Exam Type</td>
+                                    <td>Topic</td>
+                                    <td>Exam Code</td>
+                                    <td>Duration</td>
+                                    <td>Full Marks</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+
+                            <tbody id="CourseExamTable"></tbody>
+                        </table>
+
+
+                    </div>
+                </form>
+
+            </div>
+        </section>
+
+@section scripts{
+    @*<script src="~/Scripts/bootstrap.min.js"></script>
+
+
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>*@
+
+<script src="~/Scripts/AppData/Course/Entry.js"></script>
+
+}
+
+   
+

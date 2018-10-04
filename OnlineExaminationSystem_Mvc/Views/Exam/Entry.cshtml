@@ -1,0 +1,100 @@
+﻿
+@using System.Web.Mvc.Html
+@model OnlineExaminationSystem_Mvc.ViewModels.Exam.ExamEntryVm
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+
+    <form method="POST">
+        <h2> Exam Entry</h2>
+        <hr/>
+
+
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="OrganizationDD" class="col-md-2"> Organization: </label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(c => c.OrganizationSelectListItems, Model.OrganizationSelectListItems, "----Select---", new {@id="OrganizationDD",@class = "form-control"})
+                   
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="CourseId" class="col-md-2"> Course:  </label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(c => c.CourseId, Model.CourseSelectListItems, "----Select---", new { @class = "form-control", @id = "CourseDD" })
+                    @Html.HiddenFor(c => c.CourseId)
+
+
+
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="ExamType" class="col-md-2"> Exam Type </label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(c => c.ExamTypeSelectListItems, Model.ExamTypeSelectListItems, "----Select---", new { @class = "form-control", @id = "ExamTypeDD" })
+                    @Html.HiddenFor(c => c.ExamType)
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="ExamCode" class="col-md-2"> Code: </label>
+                <div class="col-md-10">
+                    <input type="text" id="ExamCode" name="ExamCode" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Topic" class="col-md-2"> Topic: </label>
+                <div class="col-md-10">
+                    <input type="text" id="Topic" name="Topic" class="form-control" />
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="FullMarks" class="col-md-2"> Full Marks: </label>
+                <div class="col-md-10">
+                    <input type="text" id="FullMarks" name="FullMarks" class="form-control" />
+                </div>
+            </div>
+           
+            <div class="form-group row">
+                <label for="Duration" class="col-md-2"> Duration: </label>
+                <div class="col-xs-2">
+                    <input class="form-control" id="Hour" name="Hour" type="text">
+                </div>
+                <label class="col-sm-1" style="line-height: 2.5;width: 0%"> : </label>
+                <div class="col-xs-2 col-md-offset-0">
+
+                    <input class="form-control" id="Minute" name="Minute" type="text">
+                </div>
+
+            </div>
+            
+
+
+
+            <div class="form-group">
+                <div class="row">
+                    <input type="submit" value="Save" id="SaveButton" class="btn btn-primary col-md-offset-2" style="margin-left: 19%"/>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+
+
+
+@section scripts{
+    @*<script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/jquery-1.9.1.min.js"></script>*@
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/AppData/Exam/Entry.js"></script>
+}
+  

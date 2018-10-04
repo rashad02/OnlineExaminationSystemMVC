@@ -1,0 +1,97 @@
+﻿@model OnlineExaminationSystem_Mvc.ViewModels.Exam.ExamAttendVm
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+
+    <form method="POST">
+        <div class="form-horizontal">
+            <div class="row">
+                <h1 style="text-align: center"> Organization Name: @Model.OrganizationName </h1>
+                <h2 style="text-align: center"> Course Name: @Model.CourseName </h2>
+                <div>
+                    <div class="col-xs-2">
+                        <p> Duration: @Model.Duration </p>
+                    </div>
+                    <div class="col-md-8" style="text-align: center">
+                        <h3> Topic: @Model.Topic</h3>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <p> Full Marks: @Model.FullMarks </p>
+                </div>
+            </div>
+            <hr>
+            @{ int i = 1; }
+            <div class="panel panel-primary">
+                <div class="panel-heading">Questions</div>
+                <div class="panel-body" style="max-height: 375px">
+                    <div class="row">
+                        @foreach (var questions in Model.Question)
+                        {
+                            var questionOrder = questions.QuestionOrder;
+                            var questionId = questions.Id;
+                            var questionText = questions.QuestionText;
+                            var questionMarks = questions.Marks;
+                            <div id="@questionOrder" style="display: none">
+                                <div class="col-md-10">
+                                    @(questionOrder).@questionText
+
+
+
+                                </div>
+                                <div class="col-md-2">
+                                    @questionMarks
+
+                                </div>
+
+
+                                <div class="col-md-6 col-md-offset-6" id="@questionOrder" >
+                                    @foreach (var options in questions.QuestionAnswers)
+                                    {
+                                        <p> <input type="radio" name="Answers" value="@options.OptionText" data-waschecked="true" /> @options.OptionText</p>
+                                    }
+                                </div>
+                            </div>
+                            i++;
+                            <input type="hidden" id="ActiveQuestionId" value="@questionId" />
+                            <input type="hidden" id="NumberOfQuestion" value="@i" />
+
+                        }
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 col-md-offset-2">
+                    <input type="button" class="btn btn-info" value=" Previous" name="PreviousQuestionButton" id="PreviousQuestionButton" />
+                </div>
+                <div class="col-md-2 col-md-offset-2">
+                    <input type="button" class="btn btn-info" value=" Next" name="NextQuestionButton" id="NextQuestionButton" />
+                </div>
+                <div class="col-md-2 col-md-offset-2">
+                    <input type="button" class="btn btn-info" value="Submit" name="SubmitQuestionButton" id="SubmitQuestionButton" />
+                </div>
+                <input type="hidden" id="ActiveQuestionOrder" value="" />
+                <input type="hidden" id="ExamsId" value="@Model.Id" />
+                <input type="hidden" id="StudentId" value="@Model.StudentId" />
+                <input type="hidden" id="CourseId" value="@Model.CourseId" />
+
+            </div>
+
+        </div>
+    </form>
+
+    @section scripts{
+    @*<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>*@
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/AppData/Exam/ExamStart.js"></script>
+
+    }
+

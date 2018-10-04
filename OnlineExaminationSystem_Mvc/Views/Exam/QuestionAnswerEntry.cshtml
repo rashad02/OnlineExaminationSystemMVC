@@ -1,0 +1,126 @@
+﻿@using System.Web.Mvc.Ajax
+@using Models
+@model OnlineExaminationSystem_Mvc.ViewModels.Exam.ExamEntryVm
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Content{
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+<script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>
+}
+
+    @using (@Ajax.BeginForm("QuestionSummary", "Exam", new AjaxOptions {HttpMethod = "POST", OnSuccess = "Question"}))
+    {
+        <h2> Question and Answer Entry</h2>
+        <hr/>
+
+   
+
+
+            <div class="form-horizontal">
+                <div class="form-group ">
+                    <label for="OrganizationId" class="col-md-2 col-md-offset-1"> Organization: </label>
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(c => c.OrganizationSelectListItems, Model.OrganizationSelectListItems, "----Select---", new {@id = "OrganizationDD", @class = "form-control"})
+                        @*@Html.HiddenFor(c => c.OrganizationId)*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Courses" class="col-md-2 col-md-offset-1"> Course: </label>
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(c => c.CourseId, Model.CourseSelectListItems, "----Select---", new {@class = "form-control", @id = "CourseDD"})
+                        @*@Html.HiddenFor(c => c.TagsId)*@
+
+
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="Tags" class="col-md-2 col-md-offset-1"> Exam: </label>
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(c => c.ExamType, Model.ExamTypeSelectListItems, "----Select---", new {@class = "form-control", @id = "ExamTypeDD"})
+
+                    </div>
+
+                </div>
+                <br/>
+
+
+
+                <div class="panel panel-info" style="margin: 5%">
+                    <div class="panel-heading">Question Setup</div>
+                    <div class="panel-body" style="max-height: 375px">
+                        <div class=" form-group">
+
+                            <label for="Marks" class="col-xs-2" style="line-height: 2.5"> Mark </label>
+                            <div class="col-xs-1">
+                                <input class="form-control" id="Marks" type="text">
+                            </div>
+                            <label for="QuestionOrder" class="col-xs-2 col-xs-offset-6" style="line-height: 2.5"> Q. Order </label>
+                            <div class="col-xs-1">
+                                <input class="form-control" id="QuestionOrder" type="text">
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12" style="padding: 30px">
+                                    <textarea id="Question" name="Question" class="form-control" style="height: 100px"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-primary " style="margin: 5%">
+                    <div class="panel-heading">Answer Option Setup</div>
+                    <div class="panel-body" style="max-height: 375px">
+                        <div class=" form-group">
+                            <div class="col-xs-2">
+                                <input class="form-control" id="Order" type="text">
+                            </div>
+                            <div class="col-xs-1">
+                                <input class="form-control" id="Answer" name="Answer" type="radio" data-waschecked="true">
+                            </div>
+                            <div class="col-xs-6">
+                                <input class="form-control" id="OptionText" type="text">
+                            </div>
+                            <div class="col-xs-2 col-xs-offset-1">
+                                <a href="#" id="AddButtonOption"><span class="glyphicon glyphicon-plus-sign" style="line-height: 1.5; font-size: 24px"></span></a>
+                            </div>
+
+                        </div>
+                        <div class="form-group col-xs-9" style="width: 77%">
+                            <table class="table table-bordered table-hover table-striped table-responsive" id="OptionTable">
+
+                                <thead>
+                                    <tr style="background-color: blue; color: white; font-weight: bold">
+                                        <td>Sl</td>
+                                        <td>Options</td>
+                                        <td>Action</td>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="OptionAddedBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class=" form-group col-md-2" style="margin-top: 5%; float: right; text-align: center">
+                        <input class="form-control btn btn-primary" id="SubmitQAButton" type="button" value="Submit Q & A >">
+                    </div>
+
+                </div>
+
+            </div>
+
+      
+    }
+
+@section scripts{
+    @*<script src="~/Scripts/jquery-1.9.1.min.js"></script>*@
+    <script src="~/Scripts/AppData/Exam/QuestionAnswer.js"></script>
+
+
+}
+
+
+

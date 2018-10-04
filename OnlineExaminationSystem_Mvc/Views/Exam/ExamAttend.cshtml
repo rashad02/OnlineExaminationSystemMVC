@@ -1,0 +1,64 @@
+﻿@model OnlineExaminationSystem_Mvc.ViewModels.Exam.ExamAttendVm
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+        <form method="POST">
+            <h2> Question and Answer Entry</h2>
+            <hr/>
+
+            <div class="row">
+
+
+                <div class="form-horizontal col-xs-6">
+                    <div class="form-group ">
+                        <label for="OrganizationId" class="col-md-2"> Organization: </label>
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(c => c.OrganizationSelectListItems, Model.OrganizationSelectListItems, "----Select---", new { @id = "OrganizationDD", @class = "form-control" })
+                            @Html.HiddenFor(c => c.OrganizationName)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Courses" class="col-md-2"> Course: </label>
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(c => c.CourseId, Model.CourseSelectListItems, "----Select---", new {@class = "form-control", @id = "CourseDD"})
+                            @Html.HiddenFor(c => c.CourseId)
+                        </div>
+                        </div>
+                            <div class="form-group">
+                                <label for="Students" class="col-md-2"> Participants: </label>
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(c => c.StudentId, Model.ParticipantSelectListItems, "----Select---", new { @class = "form-control", @id = "StudentDD" })
+                                    @Html.HiddenFor(c => c.StudentId)
+
+                                </div>
+
+                            </div>
+                    <div class="form-group">
+                        <label for="Tags" class="col-md-2"> Exam: </label>
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(c => c.Id, Model.ExamTypeSelectListItems, "----Select---", new { @class = "form-control", @id = "ExamTypeDD" })
+                            @Html.HiddenFor(c => c.Id)
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row" style="margin-left: 18px">
+                            <input type="submit" value="Start Exam" id="StartExamButton" class="btn btn-info col-md-offset-2" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+@section scripts{
+    @*<script src="~/Scripts/jquery-1.9.1.min.js"></script>*@
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/AppData/Exam/ExamAttend.js"></script>
+
+}

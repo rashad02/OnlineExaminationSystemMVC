@@ -1,0 +1,127 @@
+﻿@model OnlineExaminationSystem_Mvc.ViewModels.Student.StudentEntryVm
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+   
+        <h2> Student Entry</h2>
+        <hr/>
+
+
+@using (Html.BeginForm("StudentEntry", "Student", FormMethod.Post, new {enctype = "multipart/form-data"}))
+
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="OrganizationId" class="col-md-2"> Organization: </label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(c => c.OrganizationId, Model.OrganizationSelectListItems, "----Select---", new {@id = "OrganizationDD", @class = "form-control"})
+                @Html.HiddenFor(c => c.OrganizationId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Courses" class="col-md-2"> Course: </label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(c => c.CourseId, Model.CourseSelectListItems, "----Select---", new {@class = "form-control", @id = "CourseDD", @name = "Tags"})
+                @Html.HiddenFor(c => c.CourseId)
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="Name" class="col-md-2"> Name: </label>
+            <div class="col-md-10">
+                <input type="text" id="Name" name="Name" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="RegNO" class="col-md-2"> Registration No: </label>
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(c => c.RegNo, new {@id = "regNoTextBox", @class = "form-control", @readonly = "readonly"})
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ContactNo" class="col-md-2"> Contact No: </label>
+            <div class="col-md-10">
+                <input type="text" id="ContactNo" name="ContactNo" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Email" class="col-md-2"> Email: </label>
+            <div class="col-md-10">
+                <input type="text" id="Email" name="Email" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Address1" class="col-md-2"> Address Line 1: </label>
+            <div class="col-md-10">
+                <input type="text" id="Address1" name="Address1" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Address2" class="col-md-2"> Address Line 2: </label>
+            <div class="col-md-10">
+                <input type="text" id="Address2" name="Address2" class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="City" class="col-md-2"> City: </label>
+            <div class="col-md-10">
+                <input type="text" id="City" name="City" class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="PostalCode" class="col-md-2"> Postal Code: </label>
+            <div class="col-md-10">
+                <input type="text" id="PostalCode" name="PostalCode" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Country" class="col-md-2"> Country: </label>
+            <div class="col-md-10">
+                <input type="text" id="Country" name="Country" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Profession" class="col-md-2"> Profession: </label>
+            <div class="col-md-10">
+                <input type="text" id="Profession" name="Profession" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="HighestAcademic" class="col-md-2"> HighestAcademic: </label>
+            <div class="col-md-10">
+                <input type="text" id="HighestAcademic" name="HighestAcademic" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Image" class="col-md-2"> Image: </label>
+            <div class="col-md-10">
+                <input type="file" id="Logo" name="Logo" class="form-control"/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row" style="margin-left: 17px">
+                <input type="submit" value="Save" id="SaveButton" class="btn btn-primary col-md-2 col-md-offset-2"/>
+            </div>
+        </div>
+
+
+    </div>
+}
+   
+
+@section scripts{
+    @*<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>*@
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/AppData/Student/StudentEntry.js"></script>
+}

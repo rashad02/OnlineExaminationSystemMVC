@@ -1,0 +1,494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{884B64BD-03DE-4E53-B7EA-1DF9665C0D4C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OnlineExaminationSystem_Mvc</RootNamespace>
+    <AssemblyName>OnlineExaminationSystem_Mvc</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\style-responsive.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\table-responsive.css" />
+    <Content Include="assets\css\to-do.css" />
+    <Content Include="assets\css\zabuto_calendar.css" />
+    <Content Include="assets\font-awesome\css\font-awesome.css" />
+    <Content Include="assets\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\img\blog-bg.jpg" />
+    <Content Include="assets\img\checkbox-gray.png" />
+    <Content Include="assets\img\friends\fr-01.jpg" />
+    <Content Include="assets\img\friends\fr-02.jpg" />
+    <Content Include="assets\img\friends\fr-03.jpg" />
+    <Content Include="assets\img\friends\fr-04.jpg" />
+    <Content Include="assets\img\friends\fr-05.jpg" />
+    <Content Include="assets\img\friends\fr-06.jpg" />
+    <Content Include="assets\img\friends\fr-07.jpg" />
+    <Content Include="assets\img\friends\fr-08.jpg" />
+    <Content Include="assets\img\friends\fr-09.jpg" />
+    <Content Include="assets\img\friends\fr-10.jpg" />
+    <Content Include="assets\img\friends\fr-11.jpg" />
+    <Content Include="assets\img\instagram.jpg" />
+    <Content Include="assets\img\login-bg.jpg" />
+    <Content Include="assets\img\lorde.jpg" />
+    <Content Include="assets\img\mask.png" />
+    <Content Include="assets\img\ny.jpg" />
+    <Content Include="assets\img\portfolio\port01.jpg" />
+    <Content Include="assets\img\portfolio\port02.jpg" />
+    <Content Include="assets\img\portfolio\port03.jpg" />
+    <Content Include="assets\img\portfolio\port04.jpg" />
+    <Content Include="assets\img\portfolio\port05.jpg" />
+    <Content Include="assets\img\portfolio\port06.jpg" />
+    <Content Include="assets\img\product.jpg" />
+    <Content Include="assets\img\product.png" />
+    <Content Include="assets\img\profile-01.jpg" />
+    <Content Include="assets\img\profile-02.jpg" />
+    <Content Include="assets\img\radio-gray.png" />
+    <Content Include="assets\img\ui-danro.jpg" />
+    <Content Include="assets\img\ui-divya.jpg" />
+    <Content Include="assets\img\ui-sam.jpg" />
+    <Content Include="assets\img\ui-sherman.jpg" />
+    <Content Include="assets\img\ui-zac.jpg" />
+    <Content Include="assets\img\weather.jpg" />
+    <Content Include="assets\img\zoom.png" />
+    <Content Include="assets\js\bootstrap-inputmask\bootstrap-inputmask.min.js" />
+    <Content Include="assets\js\bootstrap-switch.js" />
+    <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\calendar-conf-events.js" />
+    <Content Include="assets\js\chart-master\Chart.js" />
+    <Content Include="assets\js\chartjs-conf.js" />
+    <Content Include="assets\js\common-scripts.js" />
+    <Content Include="assets\js\easy-pie-chart.js" />
+    <Content Include="assets\js\fancybox\jquery.fancybox.css" />
+    <Content Include="assets\js\fancybox\jquery.fancybox.js" />
+    <Content Include="assets\js\form-component.js" />
+    <Content Include="assets\js\fullcalendar\bootstrap-fullcalendar.css" />
+    <Content Include="assets\js\fullcalendar\fullcalendar.min.js" />
+    <Content Include="assets\js\gritter-conf.js" />
+    <Content Include="assets\js\gritter\css\jquery.gritter.css" />
+    <Content Include="assets\js\gritter\css\jquery.gritter0.css" />
+    <Content Include="assets\js\gritter\images\gritter-light.png" />
+    <Content Include="assets\js\gritter\images\gritter-long.png" />
+    <Content Include="assets\js\gritter\images\gritter.png" />
+    <Content Include="assets\js\gritter\images\ie-spacer.gif" />
+    <Content Include="assets\js\gritter\js\jquery.gritter.js" />
+    <Content Include="assets\js\jquery-1.8.3.min.js" />
+    <Content Include="assets\js\jquery-easy-pie-chart\jquery.easy-pie-chart.css" />
+    <Content Include="assets\js\jquery-easy-pie-chart\jquery.easy-pie-chart.js" />
+    <Content Include="assets\js\jquery-ui-1.9.2.custom.min.js" />
+    <Content Include="assets\js\jquery.backstretch.min.js" />
+    <Content Include="assets\js\jquery.dcjqaccordion.2.7.js" />
+    <Content Include="assets\js\jquery.js" />
+    <Content Include="assets\js\jquery.nicescroll.js" />
+    <Content Include="assets\js\jquery.scrollTo.min.js" />
+    <Content Include="assets\js\jquery.sparkline.js" />
+    <Content Include="assets\js\jquery.tagsinput.js" />
+    <Content Include="assets\js\jquery.ui.touch-punch.min.js" />
+    <Content Include="assets\js\morris-conf.js" />
+    <Content Include="assets\js\sparkline-chart.js" />
+    <Content Include="assets\js\tasks.js" />
+    <Content Include="assets\js\zabuto_calendar.js" />
+    <Content Include="assets\lineicons\fonts\linecons.svg" />
+    <Content Include="assets\lineicons\index.html" />
+    <Content Include="assets\lineicons\lte-ie7.js" />
+    <Content Include="assets\lineicons\style.css" />
+    <Content Include="Content\AddCourse\TabBarCSS.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Exam\QuestionTable.css" />
+    <Content Include="Content\MDB-Free_4.5.10\css\addons\datatables.css" />
+    <Content Include="Content\MDB-Free_4.5.10\css\addons\datatables.min.css" />
+    <Content Include="Content\MDB-Free_4.5.10\css\bootstrap.css" />
+    <Content Include="Content\MDB-Free_4.5.10\css\bootstrap.min.css" />
+    <Content Include="Content\MDB-Free_4.5.10\css\mdb.css" />
+    <Content Include="Content\MDB-Free_4.5.10\css\mdb.min.css" />
+    <Content Include="Content\MDB-Free_4.5.10\css\style.css" />
+    <Content Include="Content\MDB-Free_4.5.10\css\style.min.css" />
+    <Content Include="Content\MDB-Free_4.5.10\img\lightbox\default-skin.png" />
+    <Content Include="Content\MDB-Free_4.5.10\img\lightbox\default-skin.svg" />
+    <Content Include="Content\MDB-Free_4.5.10\img\lightbox\preloader.gif" />
+    <Content Include="Content\MDB-Free_4.5.10\img\overlays\01.png" />
+    <Content Include="Content\MDB-Free_4.5.10\img\overlays\02.png" />
+    <Content Include="Content\MDB-Free_4.5.10\img\overlays\03.png" />
+    <Content Include="Content\MDB-Free_4.5.10\img\overlays\04.png" />
+    <Content Include="Content\MDB-Free_4.5.10\img\overlays\05.png" />
+    <Content Include="Content\MDB-Free_4.5.10\img\overlays\06.png" />
+    <Content Include="Content\MDB-Free_4.5.10\img\overlays\07.png" />
+    <Content Include="Content\MDB-Free_4.5.10\img\overlays\08.png" />
+    <Content Include="Content\MDB-Free_4.5.10\img\overlays\09.png" />
+    <Content Include="Content\MDB-Free_4.5.10\img\svg\arrow_left.svg" />
+    <Content Include="Content\MDB-Free_4.5.10\img\svg\arrow_right.svg" />
+    <Content Include="Content\MDB-Free_4.5.10\index.html" />
+    <Content Include="Content\MDB-Free_4.5.10\js\addons\datatables.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\addons\datatables.min.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\bootstrap.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\bootstrap.min.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\jquery-3.3.1.min.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\mdb.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\mdb.min.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\modules\chart.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\modules\enhanced-modals.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\modules\forms-free.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\modules\jquery.easing.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\modules\scrolling-navbar.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\modules\velocity.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\modules\velocity.min.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\modules\waves.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\modules\wow.js" />
+    <Content Include="Content\MDB-Free_4.5.10\js\popper.min.js" />
+    <Content Include="Content\MDB-Free_4.5.10\README.txt" />
+    <Content Include="Content\ModalOptions.jpg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Bold.eot" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Bold.ttf" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Bold.woff" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Bold.woff2" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Light.eot" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Light.ttf" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Light.woff" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Light.woff2" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Medium.eot" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Medium.ttf" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Medium.woff" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Medium.woff2" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Regular.eot" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Regular.ttf" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Regular.woff" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Regular.woff2" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Thin.eot" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Thin.ttf" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Thin.woff" />
+    <Content Include="Content\MDB-Free_4.5.10\font\roboto\Roboto-Thin.woff2" />
+    <Content Include="Content\MDB-Free_4.5.10\License.pdf" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\addons\_datatables.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\core\bootstrap\_functions.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\core\bootstrap\_variables.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\core\_colors.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\core\_global.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\core\_helpers.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\core\_masks.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\core\_mixins.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\core\_typography.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\core\_variables.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\core\_waves.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_animations-basic.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_animations-extended.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_badges.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_buttons.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_cards.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_carousels.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_depreciated.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_dropdowns.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_footers.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_forms.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_input-group.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_list-group.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_modals.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_msc.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_navbars.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_pagination.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_switch.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\free\_tables.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\mdb.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\style.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\_custom-skin.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\_custom-styles.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\scss\_custom-variables.scss" />
+    <Content Include="Content\MDB-Free_4.5.10\Thumbs.db" />
+    <Content Include="Scripts\AppData\Exam\ExamAttend.js" />
+    <Content Include="Scripts\AppData\Exam\ExamStart.js" />
+    <Content Include="Scripts\AppData\Exam\QuestionSummary.js" />
+    <Content Include="Scripts\AppData\Organization\OrganizationEntry.js" />
+    <Content Include="Scripts\AppData\Organization\OrganizationSearch.js" />
+    <Content Include="Scripts\AppData\Student\StudentEntry.js" />
+    <Content Include="Scripts\AppData\Trainer\TrainerEntry.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="assets\css\.DS_Store" />
+    <Content Include="assets\font-awesome\.DS_Store" />
+    <Content Include="assets\font-awesome\css\.DS_Store" />
+    <Content Include="assets\font-awesome\fonts\.DS_Store" />
+    <Content Include="assets\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="assets\fonts\.DS_Store" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\img\.DS_Store" />
+    <Content Include="assets\img\friends\.DS_Store" />
+    <Content Include="assets\img\portfolio\.DS_Store" />
+    <Content Include="assets\js\.DS_Store" />
+    <Content Include="assets\js\bootstrap-inputmask\.DS_Store" />
+    <Content Include="assets\js\chart-master\.DS_Store" />
+    <Content Include="assets\js\fancybox\.DS_Store" />
+    <Content Include="assets\js\fullcalendar\.DS_Store" />
+    <Content Include="assets\js\gritter\.DS_Store" />
+    <Content Include="assets\js\gritter\css\.DS_Store" />
+    <Content Include="assets\js\gritter\images\.DS_Store" />
+    <Content Include="assets\js\gritter\js\.DS_Store" />
+    <Content Include="assets\js\jquery-easy-pie-chart\.DS_Store" />
+    <Content Include="assets\lineicons\.DS_Store" />
+    <Content Include="assets\lineicons\fonts\.DS_Store" />
+    <Content Include="assets\lineicons\fonts\linecons.eot" />
+    <Content Include="assets\lineicons\fonts\linecons.ttf" />
+    <Content Include="assets\lineicons\fonts\linecons.woff" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\AppData\Course\Entry.js" />
+    <Content Include="Scripts\AppData\Course\SearchCourse.js" />
+    <Content Include="Scripts\AppData\Exam\Entry.js" />
+    <Content Include="Scripts\AppData\Exam\QuestionAnswer.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\tinymce\license.txt" />
+    <Content Include="Scripts\tinymce\plugins\codesample\css\prism.css" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="Scripts\tinymce\plugins\help\img\logo.png" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.mobile.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.mobile.min.css" />
+    <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\ExamController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrganizationController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\TrainerController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Course\CourseEntryVm.cs" />
+    <Compile Include="ViewModels\Course\CourseUpdateVm.cs" />
+    <Compile Include="ViewModels\Exam\ExamAttendVm.cs" />
+    <Compile Include="ViewModels\Exam\ExamEntryVm.cs" />
+    <Compile Include="ViewModels\ResultVm.cs" />
+    <Compile Include="ViewModels\Students\StudentEntryVm.cs" />
+    <Compile Include="ViewModels\Trainer\TrainerEntryVm.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.min.css.map" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.mobile.min.css.map" />
+    <Content Include="Views\Course\AddCourse.cshtml" />
+    <Content Include="Views\Course\Entry.cshtml" />
+    <Content Include="Views\Course\SearchCourse.cshtml" />
+    <Content Include="Views\Course\TrainerAdded.cshtml" />
+    <Content Include="Views\Course\UpdatedCourseView.cshtml" />
+    <Content Include="Views\Exam\Entry.cshtml" />
+    <Content Include="Views\Exam\QuestionAnswerEntry.cshtml" />
+    <Content Include="Views\Exam\QuestionSummary.cshtml" />
+    <Content Include="Views\Exam\ExamAttend.cshtml" />
+    <Content Include="Views\Exam\ExamStart.cshtml" />
+    <Content Include="Views\Student\StudentEntry.cshtml" />
+    <Content Include="Views\Trainer\TrainerEntry.cshtml" />
+    <Content Include="Views\Exam\ExamResult.cshtml" />
+    <Content Include="Views\Exam\Result.cshtml" />
+    <Content Include="Views\Organization\OrganizationEntry.cshtml" />
+    <Content Include="Views\Organization\OrganizationView.cshtml" />
+    <Content Include="Views\Organization\OrganizationSearch.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Organization\OrganizationInformation.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{d792abc0-0d98-4659-9ed5-0ad11ff53c70}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseContext\DatabaseContext.csproj">
+      <Project>{c318c1ef-5061-484e-aa5f-80493b8638cc}</Project>
+      <Name>DatabaseContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{846217a3-aa40-4405-ad41-bc6ca342ce64}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1093</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1093/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
