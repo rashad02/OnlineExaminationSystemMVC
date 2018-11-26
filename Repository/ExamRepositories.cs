@@ -162,5 +162,11 @@ namespace Repository
             var data = db.Examses.FirstOrDefault(e => e.CourseId == courseId && e.Students.Any(s => s.Id == studentId));
             return data;
         }
+
+        public bool CheckExamByCode(string examCode)
+        {
+            bool isValid = db.Examses.Any(e => e.ExamCode == examCode);
+            return isValid;
+        }
     }
 }

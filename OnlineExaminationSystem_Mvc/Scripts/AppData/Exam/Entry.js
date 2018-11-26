@@ -1,4 +1,21 @@
-﻿$('#OrganizationDD').change(function () {
+﻿$(document).ready(function() {
+    $("#CourseDD").change(function() {
+        $("#CourseId").val($(this));
+    });
+    $("#OrganizationDD").change(function() {
+        $("#OrganizationId").val($(this));
+    });
+    $("#ExamTypeDD").change(function() {
+        var Type = $("#ExamTypeDD option:selected").text();
+        $("#ExamType").value = Type;
+    });
+});
+
+
+
+
+
+$('#OrganizationDD').change(function () {
 
     var organizationId = $(this).val();
     
@@ -25,11 +42,8 @@
                     $.each(rData, function(k, v) {
                         $("#CourseDD").append("<option value='" + v.Id + "'>" + v.CourseName + "</option>");
                     });
-
                 } 
             }
-
-
         });
 
   
@@ -38,14 +52,19 @@
 });
 
 
+//$(function () {
+//    $("#CourseDD").change(function () {
+//        $("#CourseId").val($(this));
+//    });
+//});
+//$(function () {
+//    $("#OrganizationDD").change(function () {
+//        $("#OrganizationId").val($(this));
+//    });
+//});
 $(function () {
-    $("#CourseDD").on("change", function () {
-        $("#CourseId").val($(this));
-    });
-});
-$(function () {
-    $("#ExamTypeDD").change( function () {
-        var Type = $("#ExamTypeDD option:selected").text();
-        $("#ExamType").val(Type);
+    $("#ExamTypeDD").on("change", function () {
+       // var Type = $("#ExamTypeDD option:selected").val();
+        $("#ExamTypeId").val($("#ExamTypeDD option:selected").val());
     });
 });

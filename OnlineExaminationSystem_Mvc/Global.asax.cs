@@ -7,6 +7,7 @@ using System.Web.Routing;
 using AutoMapper;
 using Models;
 using OnlineExaminationSystem_Mvc.ViewModels;
+using OnlineExaminationSystem_Mvc.ViewModels.Batch;
 using OnlineExaminationSystem_Mvc.ViewModels.Course;
 using OnlineExaminationSystem_Mvc.ViewModels.Exam;
 using OnlineExaminationSystem_Mvc.ViewModels.Student;
@@ -28,6 +29,9 @@ namespace OnlineExaminationSystem_Mvc
 
                 config.CreateMap<CourseUpdateVm, Course>();
                 config.CreateMap<Course, CourseUpdateVm>();
+
+                config.CreateMap<BatchEntryVm, Batch>();
+                config.CreateMap<Batch, BatchEntryVm>();
 
                 config.CreateMap<ExamEntryVm, Exams>();
                 config.CreateMap<Exams, ExamEntryVm>();

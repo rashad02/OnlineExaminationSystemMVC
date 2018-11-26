@@ -29,15 +29,36 @@ namespace OnlineExaminationSystem_Mvc.Controllers
         [HttpPost]
         public ActionResult Entry(ExamEntryVm examEntryVm)
         {
+
             examEntryVm.Duration = TimeSpan.FromHours(Convert.ToDouble(examEntryVm.Hour))+TimeSpan.FromMinutes(Convert.ToDouble(examEntryVm.Minute));
-            
-            var exam = Mapper.Map<Exams>(examEntryVm);
-            bool isSaved = examManager.AddExam(exam);
-            if (isSaved)
+            bool courseCheckByName = examManager.CheckExamByCode(examEntryVm.ExamCode);
+            examEntryVm.OrganizationSelectListItems = GetOrganizationListItem();
+            examEntryVm.CourseSelectListItems = GetCourseListItem();
+            examEntryVm.ExamTypeSelectListItems = GetExamTypeListItem();
+            foreach (var examType in examEntryVm.ExamTypeSelectListItems)
             {
-               return RedirectToAction("QuestionAnswerEntry");
+                if (examType.Value == examEntryVm.ExamTypeId.ToString())
+                {
+                    examEntryVm.ExamType = examType.Text;
+                }
             }
-            return View();
+            if (courseCheckByName)
+            {
+                ModelState.AddModelError("ExamCode","Exam Already Registered!");
+            }
+            var exam = Mapper.Map<Exams>(examEntryVm);
+            if (ModelState.IsValid)
+            {
+               
+                bool isSaved = examManager.AddExam(exam);
+                if (isSaved)
+                {
+                    return RedirectToAction("QuestionAnswerEntry");
+                }
+            }
+           
+
+            return View(examEntryVm);
         }
 
         public ActionResult QuestionAnswerEntry()

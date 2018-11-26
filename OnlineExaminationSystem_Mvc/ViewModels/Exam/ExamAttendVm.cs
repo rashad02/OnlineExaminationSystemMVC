@@ -18,6 +18,7 @@ namespace OnlineExaminationSystem_Mvc.ViewModels.Exam
         public int OrganizationId { get; set; }
         public int  StudentId { get; set; }
         public Models.Course Courses { get; set; }
+        public ICollection<Models.Batch> Batch { get; set; }
         public string ExamType { get; set; }
         public string ExamCode { get; set; }
         public string Topic { get; set; }

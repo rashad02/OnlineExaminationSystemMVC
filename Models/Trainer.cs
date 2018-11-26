@@ -13,6 +13,7 @@ namespace Models
         public string Name { get; set; }
         public virtual ICollection<Organization> Organizations { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<Batch> Batches { get; set; }
         public string ContactNo { get; set; }
         public string Email { get; set; }
         public string Address1 { get; set; }
@@ -21,7 +22,7 @@ namespace Models
         public int PostalCode { get; set; }
         public string Country { get; set; }
        
-        [NotMapped]
-        public byte Image { get; set; } 
+       
+        public byte[] Image { get; set; } 
     }
 }

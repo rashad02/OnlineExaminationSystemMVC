@@ -1,0 +1,123 @@
+﻿@model OnlineExaminationSystem_Mvc.ViewModels.Batch.BatchEntryVm
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Content{
+
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+
+
+}
+
+<form method="POST">
+    <h2> Batch Entry</h2>
+    <hr />
+
+
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="OrganizationId" class="col-md-2"> Organization: </label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(c => c.OrganizationId, Model.OrganizationSelectListItems, "----Select---", new { @class = "form-control" })
+                @Html.HiddenFor(c => c.OrganizationId)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CourseId" class="col-md-2"> Course: </label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(c => c.CourseId, Model.CourseSelectListItems, "----Select---", new { @class = "form-control" })
+                @Html.HiddenFor(c => c.CourseId)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="CourseName" class="col-md-2"> Batch No: </label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.BatchNo, new { type = "text", @class = "form-control", @id = "CourseName" })
+                @Html.ValidationMessageFor(c => c.BatchNo, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CourseCode" class="col-md-2"> Description: </label>
+            <div class="col-md-10">
+                @*<input type="text" id="CourseCode" name="CourseCode" class="form-control"/>*@
+                @Html.TextAreaFor(model => model.Description,3,20, new { type = "text", @class = "form-control", @id = "CourseCode" })
+                @Html.ValidationMessageFor(c => c.Description, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Duration" class="col-md-2"> Start Date: </label>
+            <div class="col-md-10">
+                <div class="container">
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class='input-group date' id='startDateTimePicker'>
+                                    @Html.TextBoxFor(model=>model.StartDate,new{@class="form-control"})
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*@Html.TextBoxFor(model => model.StartDate, new {type = "date", @class = "form-control", @id = "Duration"})
+                @Html.ValidationMessageFor(model => model.StartDate, "", new {@style = "color:red"})*@
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Credit" class="col-md-2"> End Date: </label>
+            <div class="col-md-10">
+                @*<input type="text" id="Credit" name="Credit" class="form-control"/>*@
+                <div class="container">
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class='input-group date' id='endDateTimePicker'>
+                                   @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control" })
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>                 
+                    </div>
+                </div>
+                @*@Html.TextBoxFor(model => model.EndDate, new { type = "date", @class = "form-control", @id = "Credit" })
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @style = "color:red" })*@
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            <div class="row " style="margin-left: 17px">
+                <input type="submit" value="Save" id="SaveButton" class="btn btn-primary col-md-offset-2" />
+            </div>
+        </div>
+
+
+    </div>
+</form>
+
+
+
+
+
+
+
+
+@section scripts{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+       
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>    
+    <script src="~/Scripts/AppData/Batch/Entry.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

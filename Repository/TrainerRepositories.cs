@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,15 @@ namespace Repository
         {
             var data = db.Courses.Where(c => c.Id == courseId);
             return data.ToList();
+        }
+
+        public bool UpdateTrainer(Trainer trainer)
+        {
+            db.Trainers.Attach(trainer);
+            db.Entry(trainer).State = EntityState.Modified;
+
+
+            return db.SaveChanges() > 0;
         }
     }
 }

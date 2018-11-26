@@ -13,10 +13,13 @@ namespace Models
         public virtual List<Organization> Organizations { get; set; }
         [Required]
         [MaxLength(50)]
+        
         public string CourseName { get; set; }
-        [Required]
+       
         [MaxLength(50)]
+        [StringLength(50,MinimumLength = 3)]     
         public string CourseCode { get; set; }
+       
         public double Duration { get; set; }
         public double Credit { get; set; }
         public string Outline { get; set; }

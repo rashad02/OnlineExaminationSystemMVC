@@ -73,12 +73,12 @@ namespace Repository
 
         }
 
-        public List<Course> GetLastAddedCourse()
+        public Course GetLastAddedCourse()
         {
             int maxId = db.Courses.Max(c => c.Id);
-            var course = db.Courses.Where(c => c.Id == maxId);
+            var course = db.Courses.FirstOrDefault(c => c.Id == maxId);
 
-            return course.ToList();
+            return course;
         }
         public List<Course> GetCourseByName(Course course)
         {
@@ -122,6 +122,51 @@ namespace Repository
         public List<Course> GetCourse()
         {
             return db.Courses.ToList();
+        }
+
+        public bool CheckCourseByName(string courseName)
+        {
+            bool data = db.Courses.Any(c => c.CourseName == courseName);
+            return data;
+        }
+
+        public bool CheckCourseByCode(string courseCode)
+        {
+            bool data = db.Courses.Any(c => c.CourseCode == courseCode);
+            return data;
+        }
+
+        public Trainer GetTrainerById(int id)
+        {
+            var data = db.Trainers.FirstOrDefault(t => t.Id == id);
+            return data;
+        }
+        public bool UpdateTrainer(Trainer trainer)
+        {
+            db.Trainers.Attach(trainer);
+            db.Entry(trainer).State = EntityState.Modified;
+            return db.SaveChanges() > 0;
+        }
+        public bool UpdateExam(Exams exam)
+        {
+            db.Examses.Attach(exam);
+            db.Entry(exam).State = EntityState.Modified;
+            return db.SaveChanges() > 0;
+        }
+
+       
+
+        public ICollection<Course> GetCoursesById(int courseId)
+        {
+            var data = db.Courses.Where(c => c.Id == courseId);
+            return data.ToList();
+        }
+
+
+        public List<Exams> GetLastAddedExamByCourse(int courseId)
+        {
+            var data = db.Examses.Where(e => e.CourseId == courseId);
+            return data.ToList();
         }
     }
 }

@@ -118,6 +118,66 @@
     <Compile Include="Migrations\201809300204303_Admin-TableAdded.Designer.cs">
       <DependentUpon>201809300204303_Admin-TableAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810042010308_validation-check.cs" />
+    <Compile Include="Migrations\201810042010308_validation-check.Designer.cs">
+      <DependentUpon>201810042010308_validation-check.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810061746094_validation-check2.cs" />
+    <Compile Include="Migrations\201810061746094_validation-check2.Designer.cs">
+      <DependentUpon>201810061746094_validation-check2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810181858308_datetime2-type-check.cs" />
+    <Compile Include="Migrations\201810181858308_datetime2-type-check.Designer.cs">
+      <DependentUpon>201810181858308_datetime2-type-check.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810181904102_migrate-datetimetodatetime2.cs" />
+    <Compile Include="Migrations\201810181904102_migrate-datetimetodatetime2.Designer.cs">
+      <DependentUpon>201810181904102_migrate-datetimetodatetime2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810181924200_migrate-datetime2ToDatetime.cs" />
+    <Compile Include="Migrations\201810181924200_migrate-datetime2ToDatetime.Designer.cs">
+      <DependentUpon>201810181924200_migrate-datetime2ToDatetime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810181926487_datetime-type-remove.cs" />
+    <Compile Include="Migrations\201810181926487_datetime-type-remove.Designer.cs">
+      <DependentUpon>201810181926487_datetime-type-remove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810182144344_trainer-batch-relation.cs" />
+    <Compile Include="Migrations\201810182144344_trainer-batch-relation.Designer.cs">
+      <DependentUpon>201810182144344_trainer-batch-relation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810182302036_lead-trainer-property-to-batch.cs" />
+    <Compile Include="Migrations\201810182302036_lead-trainer-property-to-batch.Designer.cs">
+      <DependentUpon>201810182302036_lead-trainer-property-to-batch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811191821146_batch-exam-model-updated.cs" />
+    <Compile Include="Migrations\201811191821146_batch-exam-model-updated.Designer.cs">
+      <DependentUpon>201811191821146_batch-exam-model-updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811191845164_batch-exam-model-updated2.cs" />
+    <Compile Include="Migrations\201811191845164_batch-exam-model-updated2.Designer.cs">
+      <DependentUpon>201811191845164_batch-exam-model-updated2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811201819592_batch-exam-date-added.cs" />
+    <Compile Include="Migrations\201811201819592_batch-exam-date-added.Designer.cs">
+      <DependentUpon>201811201819592_batch-exam-date-added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811221659182_exam-batch-many-to-many-relationship.cs" />
+    <Compile Include="Migrations\201811221659182_exam-batch-many-to-many-relationship.Designer.cs">
+      <DependentUpon>201811221659182_exam-batch-many-to-many-relationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811221745031_batch-date.cs" />
+    <Compile Include="Migrations\201811221745031_batch-date.Designer.cs">
+      <DependentUpon>201811221745031_batch-date.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811221752564_batch-date-context.cs" />
+    <Compile Include="Migrations\201811221752564_batch-date-context.Designer.cs">
+      <DependentUpon>201811221752564_batch-date-context.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811241158156_batch-student-many-to-many-relationship.cs" />
+    <Compile Include="Migrations\201811241158156_batch-student-many-to-many-relationship.Designer.cs">
+      <DependentUpon>201811241158156_batch-student-many-to-many-relationship.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineExaminationSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -186,6 +246,51 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809300204303_Admin-TableAdded.resx">
       <DependentUpon>201809300204303_Admin-TableAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810042010308_validation-check.resx">
+      <DependentUpon>201810042010308_validation-check.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810061746094_validation-check2.resx">
+      <DependentUpon>201810061746094_validation-check2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810181858308_datetime2-type-check.resx">
+      <DependentUpon>201810181858308_datetime2-type-check.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810181904102_migrate-datetimetodatetime2.resx">
+      <DependentUpon>201810181904102_migrate-datetimetodatetime2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810181924200_migrate-datetime2ToDatetime.resx">
+      <DependentUpon>201810181924200_migrate-datetime2ToDatetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810181926487_datetime-type-remove.resx">
+      <DependentUpon>201810181926487_datetime-type-remove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810182144344_trainer-batch-relation.resx">
+      <DependentUpon>201810182144344_trainer-batch-relation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810182302036_lead-trainer-property-to-batch.resx">
+      <DependentUpon>201810182302036_lead-trainer-property-to-batch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811191821146_batch-exam-model-updated.resx">
+      <DependentUpon>201811191821146_batch-exam-model-updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811191845164_batch-exam-model-updated2.resx">
+      <DependentUpon>201811191845164_batch-exam-model-updated2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811201819592_batch-exam-date-added.resx">
+      <DependentUpon>201811201819592_batch-exam-date-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811221659182_exam-batch-many-to-many-relationship.resx">
+      <DependentUpon>201811221659182_exam-batch-many-to-many-relationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811221745031_batch-date.resx">
+      <DependentUpon>201811221745031_batch-date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811221752564_batch-date-context.resx">
+      <DependentUpon>201811221752564_batch-date-context.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811241158156_batch-student-many-to-many-relationship.resx">
+      <DependentUpon>201811241158156_batch-student-many-to-many-relationship.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -18,7 +18,7 @@
             <div class="form-group">
                 <label for="OrganizationDD" class="col-md-2"> Organization: </label>
                 <div class="col-md-10">
-                    @Html.DropDownListFor(c => c.OrganizationSelectListItems, Model.OrganizationSelectListItems, "----Select---", new {@id="OrganizationDD",@class = "form-control"})
+                    @Html.DropDownListFor(c => c.OrganizationId, Model.OrganizationSelectListItems, "----Select---", new {@id="OrganizationDD",@class = "form-control"})
                    
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <div class="col-md-10">
                     @Html.DropDownListFor(c => c.CourseId, Model.CourseSelectListItems, "----Select---", new { @class = "form-control", @id = "CourseDD" })
                     @Html.HiddenFor(c => c.CourseId)
-
+                   
 
 
                 </div>
@@ -36,8 +36,8 @@
             <div class="form-group">
                 <label for="ExamType" class="col-md-2"> Exam Type </label>
                 <div class="col-md-10">
-                    @Html.DropDownListFor(c => c.ExamTypeSelectListItems, Model.ExamTypeSelectListItems, "----Select---", new { @class = "form-control", @id = "ExamTypeDD" })
-                    @Html.HiddenFor(c => c.ExamType)
+                    @Html.DropDownListFor(c => c.ExamTypeId, Model.ExamTypeSelectListItems, "----Select---", new { @class = "form-control", @id = "ExamTypeDD" })
+                    @Html.HiddenFor(c => c.ExamTypeId)
                 </div>
 
             </div>
@@ -45,32 +45,38 @@
             <div class="form-group">
                 <label for="ExamCode" class="col-md-2"> Code: </label>
                 <div class="col-md-10">
-                    <input type="text" id="ExamCode" name="ExamCode" class="form-control" />
+                    
+                    @Html.TextBoxFor(model => model.ExamCode, new { @type = "text", @id = "ExamCode", @name = "ExamCode", @class = "form-control" })
+                    @Html.ValidationMessageFor(model=>model.ExamCode,"",new{ @style="color: red"})
                 </div>
             </div>
             <div class="form-group">
                 <label for="Topic" class="col-md-2"> Topic: </label>
                 <div class="col-md-10">
-                    <input type="text" id="Topic" name="Topic" class="form-control" />
-
+                  
+                    @Html.TextBoxFor(model => model.Topic, new { @type = "text", @id = "Topic", @name = "Topic", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Topic, "", new { @style = "color: red" })
                 </div>
             </div>
             <div class="form-group">
                 <label for="FullMarks" class="col-md-2"> Full Marks: </label>
                 <div class="col-md-10">
-                    <input type="text" id="FullMarks" name="FullMarks" class="form-control" />
+                   
+                    @Html.TextBoxFor(model => model.FullMarks, new { @type = "text", @id = "FullMarks", @name = "FullMarks", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FullMarks, "", new { @style = "color: red" })
                 </div>
             </div>
            
             <div class="form-group row">
                 <label for="Duration" class="col-md-2"> Duration: </label>
                 <div class="col-xs-2">
-                    <input class="form-control" id="Hour" name="Hour" type="text">
+                    @Html.TextBoxFor(model => model.Hour, new { @type = "text", @id = "Hour", @name = "Hour", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Hour, "", new { @style = "color: red" })
                 </div>
                 <label class="col-sm-1" style="line-height: 2.5;width: 0%"> : </label>
                 <div class="col-xs-2 col-md-offset-0">
-
-                    <input class="form-control" id="Minute" name="Minute" type="text">
+                    @Html.TextBoxFor(model => model.Minute, new { @type = "text", @id = "Minute", @name = "Minute", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Minute, "", new { @style = "color: red" })
                 </div>
 
             </div>

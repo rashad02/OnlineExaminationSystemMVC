@@ -10,14 +10,17 @@ namespace Models
     public class Exams
     {
         public int Id { get; set; }
-
         public int CourseId { get; set; }
+        public int BatchId { get; set; }
+
         public Course Courses { get; set; }
+        public ICollection<Batch> Batch { get; set; }
         public string ExamType { get; set; }
         public string ExamCode { get; set; }
         public string Topic { get; set; }
         public double  ObtainedMarks { get; set; }
         public double FullMarks { get; set; }
+
         [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
         public TimeSpan Duration { get; set; }
         public string Serial { get; set; }

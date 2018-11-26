@@ -1,0 +1,218 @@
+﻿@model OnlineExaminationSystem_Mvc.ViewModels.Batch.BatchEntryVm
+@{
+    Layout = null;
+}
+
+
+
+<div class="form-horizontal">
+    <h2> Exam Entry</h2>
+<hr/>
+
+    <div class="form-group">
+        <label for="CourseDD" class="col-md-2"> Course: </label>
+        <div class="col-md-8">
+            @Html.DropDownListFor(c => c.ExamSelectListItems, Model.ExamSelectListItems, new {@id = "ExamDD", @class = "form-control"})
+            @Html.HiddenFor(e => e.CourseId)
+
+        </div>
+    </div>
+        @*<div class="form-group row">
+            <label for="Duration" class="col-md-2"> Duration: </label>
+            <div class="col-xs-2">
+                @*<input class="form-control" id="Hour" name="Hour" type="text">
+                @Html.TextBoxFor(c => c.Hour, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Hour, "", new { @style = "color:red" })
+            </div>
+            <label class="col-sm-1" style="line-height: 2.5; width: 0%"> : </label>
+            <div class="col-xs-2 col-md-offset-0">
+
+                @*<input class="form-control" id="Minute" name="Minute" type="text">
+                @Html.TextBoxFor(c => c.Minute, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Minute, "", new { @style = "color:red" })
+            </div>
+            <div id="HiddenField">
+
+            </div>
+        </div>*@
+        <div class="form-group">
+            <label for="ExamDate" class="col-md-2"> Exam Date: </label>
+            <div class="col-md-10">
+                <div class="container">
+                    <div class="row">
+                        <div class='col-sm-7'>
+                            <div class="form-group">
+                                <div class='input-group date'  id='examDateTimePicker'>
+                                    @Html.TextBoxFor(model => model.ExamDate, new { @class = "form-control", @id ="examDateTime" })
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*@Html.TextBoxFor(model => model.StartDate, new {type = "date", @class = "form-control", @id = "Duration"})
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new {@style = "color:red"})*@
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row" style="margin-right: 20%; float: right;">
+                <input type="button" value="Schedule" id="ScheduleExamButton" class="btn btn-info col-md-offset-2" />
+            </div>
+        </div>
+
+
+        <div class="col-md-10">
+            <table class="table table-bordered table-hover table-striped table-responsive" id="BatchOptionTable">
+
+                <thead>
+                    <tr style="background-color: blue; color: white; font-weight: bold">
+                        <td hidden="hidden">Exam Id </td>
+                        <td>Exam Type</td>
+                        <td>Topic</td>
+                        <td>Exam Code</td>
+                        <td>Duration</td>
+                        <td>Full Marks</td>
+                        <td>Schedule</td>
+                        <td>Action</td>
+
+                    </tr>
+                </thead>
+
+                <tbody id="CourseExamTable"></tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+
+
+@*  <div class="form-group">
+            <label for="OrganizationDD" class="col-md-2"> Organization: </label>
+            <div class="col-md-8">
+                @{
+
+
+                    var batch = Model.Batch.BatchNo;
+                    var course = Model.Courses.CourseName;
+                    var organizations = Model.OrganizationSelectListItems.FirstOrDefault(o => o.Value == Model.OrganizationId.ToString());
+                    var organization = organizations.Text;
+
+        //string Organization = "";
+
+        //foreach (var organizationName in Model.Organizations)
+        //{
+        //    Organization = organizationName.Name;
+
+        //}
+                }
+                @Html.DropDownListFor(c => c.OrganizationId, Model.OrganizationSelectListItems, organization, new { @id = "OrganizationDD", @class = "form-control", @disabled = true })
+                @Html.HiddenFor(e => e.OrganizationId)
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="CourseDD" class="col-md-2"> Course: </label>
+            <div class="col-md-8">
+                @Html.DropDownListFor(c => c.CourseId, Model.CourseSelectListItems, course, new {@id = "CourseDD", @class = "form-control", @disabled = true})
+                @Html.HiddenFor(e => e.CourseId)
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="CourseDD" class="col-md-2"> Course: </label>
+            <div class="col-md-8">
+                @Html.DropDownListFor(c => c.CourseId, Model.CourseSelectListItems, batch, new { @id = "CourseDD", @class = "form-control", @disabled = true })
+                @Html.HiddenFor(e => e.CourseId)
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="ExamTypeDD" class="col-md-2"> Exam Type </label>
+            <div class="col-md-8">
+                @Html.DropDownListFor(c => c.ExamTypeId, Model.ExamTypeSelectListItems, "----Select---", new { @class = "form-control", @id = "ExamTypeDD" })
+                @Html.HiddenFor(e => e.ExamTypeId)
+                @Html.HiddenFor(e => e.ExamType)
+
+                <input type="hidden" id="rowIndex" value="" />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="ExamCode" class="col-md-2"> Code: </label>
+            <div class="col-md-8">
+                @*<input type="text" id="ExamCode" name="ExamCode" class="form-control" />
+                @Html.TextBoxFor(c => c.ExamCode, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(c => c.ExamCode, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Topic" class="col-md-2"> Topic: </label>
+            <div class="col-md-8">
+                @*<input type="text" id="Topic" name="Topic" class="form-control"/>
+                @Html.TextBoxFor(c => c.Topic, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Topic, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="FullMarks" class="col-md-2"> Full Marks: </label>
+            <div class="col-md-8">
+                @*<input type="text" id="FullMarks" name="FullMarks" class="form-control"/>
+                @Html.TextBoxFor(c => c.FullMarks, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.FullMarks, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="Duration" class="col-md-2"> Duration: </label>
+            <div class="col-xs-2">
+                @*<input class="form-control" id="Hour" name="Hour" type="text">
+                @Html.TextBoxFor(c => c.Hour, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Hour, "", new { @style = "color:red" })
+            </div>
+            <label class="col-sm-1" style="line-height: 2.5; width: 0%"> : </label>
+            <div class="col-xs-2 col-md-offset-0">
+
+                @*<input class="form-control" id="Minute" name="Minute" type="text">
+                @Html.TextBoxFor(c => c.Minute, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Minute, "", new { @style = "color:red" })
+            </div>
+            <div id="HiddenField">
+
+            </div>
+        </div>
+        <div class="form-group">
+
+            <div class="col-md-3" style="margin-left: 17%">
+                <input type="submit" id="SaveExamButton" value="Save" class="form-control btn btn-primary" />
+            </div>
+        </div>
+
+
+        <div class="col-md-10">
+            <table class="table table-bordered table-hover table-striped table-responsive" id="OptionTable">
+
+                <thead>
+                    <tr style="background-color: blue; color: white; font-weight: bold">
+                        <td hidden="hidden">Exam Id </td>
+                        <td>Exam Type</td>
+                        <td>Topic</td>
+                        <td>Exam Code</td>
+                        <td>Duration</td>
+                        <td>Full Marks</td>
+                        <td>Action</td>
+
+                    </tr>
+                </thead>
+
+                <tbody id="CourseExamTable"></tbody>
+            </table>
+        </div>
+    </div>*@
+@section scripts{
+    <script src="~/Scripts/AppData/Batch/Entry.js"></script>
+}

@@ -29,7 +29,10 @@ namespace DatabaseContext
         modelBuilder.Entity<Course>()
             .HasOptional(r=>r.Results)
             .WithMany().WillCascadeOnDelete(false);
-            
+
+        modelBuilder.Properties<DateTime>()
+.Configure(c => c.HasColumnType("datetime2"));
+       
     }
 
 

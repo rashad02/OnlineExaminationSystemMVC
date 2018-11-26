@@ -35,5 +35,9 @@ namespace BLL
             return trainerRepositories.GetCoursesById(courseId);
         }
 
+        public bool UpdateTrainer(Trainer trainer)
+        {
+                return trainerRepositories.UpdateTrainer(trainer);
+        }
     }
 }

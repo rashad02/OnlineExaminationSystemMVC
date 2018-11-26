@@ -17,7 +17,8 @@ namespace OnlineExaminationSystem_Mvc.ViewModels.Course
         [MaxLength(50)]
         public string CourseName { get; set; }
         [Required]
-        [MaxLength(50)]
+        [StringLength(30, MinimumLength = 3)]
+       
         public string CourseCode { get; set; }
         public double Duration { get; set; }
         public double Credit { get; set; }

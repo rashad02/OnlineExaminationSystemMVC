@@ -129,5 +129,10 @@ namespace BLL
         {
             return examRepositories.GetExamByStudentCourseId(courseId, studentId);
         }
+
+        public bool CheckExamByCode(string examCode)
+        {
+            return examRepositories.CheckExamByCode(examCode);
+        }
     }
 }

@@ -57,7 +57,7 @@ namespace BLL
             return repositories.GetTrainerByName(trainer);
         }
 
-        public List<Course> GetLastAddedCourse()
+        public Course GetLastAddedCourse()
         {
             return repositories.GetLastAddedCourse();
         }
@@ -85,6 +85,44 @@ namespace BLL
         public List<Course> GetCourse()
         {
                 return repositories.GetCourse();
+        }
+
+        public bool CheckCourseByName(string courseName)
+        {
+            return repositories.CheckCourseByName(courseName);
+        }
+
+        public bool CheckCourseByCode(string courseCode)
+        {
+            return repositories.CheckCourseByCode(courseCode);
+        }
+
+        public Trainer GetTrainerById(int id)
+        {
+                return repositories.GetTrainerById(id);
+        }
+
+        public bool UpdateTrainer(Trainer trainer)
+        {
+            return repositories.UpdateTrainer(trainer);
+        }
+
+        public bool UpdateExam(Exams exam)
+        {
+            return repositories.UpdateExam(exam);
+        }
+
+        
+
+        public ICollection<Course> GetCoursesById(int courseId)
+        {
+                return repositories.GetCoursesById(courseId);
+        }
+
+
+        public List<Exams> GetLastAddedExamByCourse(int courseId)
+        {
+            return repositories.GetLastAddedExamByCourse(courseId);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,6 +11,7 @@ using DatabaseContext;
 using Models;
 using OnlineExaminationSystem_Mvc.ViewModels.Course;
 using OnlineExaminationSystem_Mvc.ViewModels.Exam;
+using OnlineExaminationSystem_Mvc.ViewModels.Trainer;
 
 namespace OnlineExaminationSystem_Mvc.Controllers
 {
@@ -35,34 +37,55 @@ namespace OnlineExaminationSystem_Mvc.Controllers
         [HttpPost]
         public ActionResult Entry(CourseEntryVm courseVm)
         {
-
-
-
-            // var tuple = new Tuple<Organization, Tags>(new Organization(), new Tags());
-
-            //tuple.Item1.SelectListItems = GetSelectListItem();
-            //tuple.Item2.SelectTagListItems = GetTextListItem();
-
-            var course = Mapper.Map<Course>(courseVm);
-            var organization = manager.GetOrganizationsById(courseVm.OrganizationId);
-            var Tags = manager.GetTagById(courseVm.TagsId);
-            course.Organizations = organization.ToList();
-            course.Tags = Tags.ToList();
-           
-            bool isSaved = manager.addCourse(course);
-            if (isSaved)
+            bool courseCheckByName = manager.CheckCourseByName(courseVm.CourseName);
+            bool courseCheckByCode = manager.CheckCourseByCode(courseVm.CourseCode);
+            if (courseCheckByName)
             {
-                courseVm.SelectTrainerListItem = GetTrainerListItem();
-                courseVm.SelectCourseSelectListItemsListItems = GetCourseListItem();
-                courseVm.ExamTypeSelectListItems = GetExamTypeListItem();
-                courseVm.SelectListItems = GetSelectListItem();
-                courseVm.SelectTagListItems = GetTextListItem();
-                courseVm.Id = course.Id;
-                courseVm.Organizations = course.Organizations;
-                courseVm.Tags = course.Tags;
-                return View("AddCourse", courseVm);
+                ModelState.AddModelError("CourseName", "Course Name already exists");
             }
-            return View();
+            if (courseCheckByCode)
+            {
+                ModelState.AddModelError("CourseCode", "Course Code already exists");
+            }
+
+
+            if (ModelState.IsValid)
+            {
+                var course = Mapper.Map<Course>(courseVm);
+                var organization = manager.GetOrganizationsById(courseVm.OrganizationId);
+                var Tags = manager.GetTagById(courseVm.TagsId);
+                course.Organizations = organization.ToList();
+                course.Tags = Tags.ToList();
+
+                bool isSaved = manager.addCourse(course);
+                if (isSaved)
+                {
+                    courseVm.SelectTrainerListItem = GetTrainerListItem();
+                    courseVm.SelectCourseSelectListItemsListItems = GetCourseListItem();
+                    courseVm.ExamTypeSelectListItems = GetExamTypeListItem();
+                    courseVm.SelectListItems = GetSelectListItem();
+                    courseVm.SelectTagListItems = GetTextListItem();
+                    courseVm.Id = course.Id;
+                    courseVm.Organizations = course.Organizations;
+                    courseVm.Tags = course.Tags;
+                    return View("AddCourse", courseVm);
+                }
+            }
+            
+            courseVm.SelectListItems = GetSelectListItem();
+            courseVm.SelectTagListItems = GetTextListItem();
+            return View(courseVm);
+        }
+
+        [HttpPost]
+        public ActionResult CheckCourseExistByCourseName(string courseName)
+        {
+
+
+            var courseExist = manager.CheckCourseByName(courseName);
+            return Json(courseExist==null);
+            
+            
         }
         public ActionResult AddCourse()
         {
@@ -121,7 +144,7 @@ namespace OnlineExaminationSystem_Mvc.Controllers
         {
             bool isSaved = false;
             var course = Mapper.Map<Course>(courseEntryVm);
-            course = manager.GetLastAddedCourse()[0];
+            course = manager.GetLastAddedCourse();
             foreach (var trainer in courseEntryVm.Trainers)
             {
 
@@ -189,17 +212,15 @@ namespace OnlineExaminationSystem_Mvc.Controllers
 
 
 
-        //public PartialViewResult AddCourse(Course course)
-        //{
-        //    bool isSaved=manager.addCourse(course);
-        //    if (isSaved)
-        //    {
-        //        return PartialView("~\\VIews\\Shared\\AddCourse\\Add.cshtml");
-        //    }
-        //    return PartialView("~\\VIews\\Shared\\AddCourse\\Add.cshtml");
-        //}
-
-
+        public ActionResult Update(int id)
+        {
+            var trainer = manager.GetTrainerById(id);
+            var trainerVm = Mapper.Map<TrainerEntryVm>(trainer);  
+            trainerVm.OrganizationSelectListItems = GetSelectListItem();
+            trainerVm.CourseSelectListItems = GetCourseListItem();
+            return PartialView("~\\Views\\Shared\\UpdateTrainer.cshtml", trainerVm);
+        }
+      
         public List<SelectListItem> GetTextListItem()
         {
             var TagList = manager.GetTag();
@@ -262,24 +283,63 @@ namespace OnlineExaminationSystem_Mvc.Controllers
             var dataList = manager.GetCourseByName(course);        
             return Json(dataList.Select(c=> new {c.Id, c.CourseName,c.Duration, TrainerData = c.Trainers.Select(t=>new{t.Name}) }), JsonRequestBehavior.AllowGet);
         }
-
-
-        public JsonResult CourseExamAdd(ExamEntryVm examEntryVm)
+ 
+        public ActionResult CourseExamAdd()
         {
-            var course=manager.GetLastAddedCourse();
-            examEntryVm.CourseId = course[0].Id;
-            examEntryVm.Duration = TimeSpan.FromHours(Convert.ToDouble(examEntryVm.Hour)) + TimeSpan.FromMinutes(Convert.ToDouble(examEntryVm.Minute));
-
-            var exam = Mapper.Map<Exams>(examEntryVm);
-            var data=new List<Exams>();
-            bool isSaved = manager.AddExam(exam);
-            if (isSaved)
-            {
-                data=manager.GetLastAddedExam();
-
-            }
-           return Json(data.Select(e=>new{e.ExamType,e.Topic,e.ExamCode,e.FullMarks,e.Duration}), JsonRequestBehavior.AllowGet);
+            ExamEntryVm examEntryVm=new ExamEntryVm();
+            examEntryVm.Courses =  manager.GetLastAddedCourse();
+            examEntryVm.OrganizationId = examEntryVm.Courses.Organizations[0].Id;
+            examEntryVm.OrganizationSelectListItems = GetSelectListItem();
+            examEntryVm.CourseSelectListItems = GetCourseListItem();
+            examEntryVm.ExamTypeSelectListItems = GetExamTypeListItem();
+            return PartialView("~\\Views\\Shared\\ExamAssign.cshtml", examEntryVm);
         }
+
+        [HttpPost]
+        public ActionResult ExamAssign(ExamEntryVm examEntryVm)
+        {
+
+            examEntryVm.Courses = manager.GetLastAddedCourse();
+            examEntryVm.OrganizationId = examEntryVm.Courses.Organizations[0].Id;
+            if (ModelState.IsValid)
+            {
+
+              
+                examEntryVm.Duration = TimeSpan.FromHours(Convert.ToDouble(examEntryVm.Hour)) +
+                                       TimeSpan.FromMinutes(Convert.ToDouble(examEntryVm.Minute));
+                var exam = Mapper.Map<Exams>(examEntryVm);
+                var data = new List<Exams>();
+                if (examEntryVm.Id == 0)
+                {
+                    bool isSaved = manager.AddExam(exam);
+                    if (isSaved)
+                    {
+                        data = manager.GetLastAddedExamByCourse(examEntryVm.CourseId);
+                    }
+                }
+                else
+                {
+                    bool isUpdated = manager.UpdateExam(exam);
+                    if (isUpdated)
+                    {
+                        data = manager.GetLastAddedExamByCourse(examEntryVm.CourseId);
+                    }
+                }
+                return Json(data.Select(e => new { e.Id, e.ExamType, e.Topic, e.ExamCode, e.FullMarks, e.Duration }),
+                    JsonRequestBehavior.AllowGet);
+            }
+           
+            examEntryVm.OrganizationSelectListItems = GetSelectListItem();
+            examEntryVm.CourseSelectListItems = GetCourseListItem();
+            examEntryVm.ExamTypeSelectListItems = GetExamTypeListItem();
+            return PartialView("~\\Views\\Shared\\ExamAssign.cshtml", examEntryVm);
+
+
+        }
+          
+           
+
+       
         public JsonResult SearchByOrganizationId(int Id)
         {
             var courses = new List<Course>();
@@ -294,6 +354,60 @@ namespace OnlineExaminationSystem_Mvc.Controllers
             }
 
             return Json(courses.Select(c => new { c.Id, c.CourseName, c.Duration, TrainerData = c.Trainers.Select(t => new { t.Name }) }), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult TrainerUpdate(TrainerEntryVm trainerEntryVm)
+        {
+
+            HttpPostedFileBase file = Request.Files["Logo"];
+            if (file == null)
+            {
+                ModelState.AddModelError("Image","Upload a Image to Update!!");
+            }
+            else
+            {
+                trainerEntryVm.Image = ConvertToBytes(file);
+            }
+            trainerEntryVm.Organizations = manager.GetOrganizationsById(trainerEntryVm.OrganizationId);
+            trainerEntryVm.Courses = manager.GetCoursesById(trainerEntryVm.CourseId);
+            var trainer = Mapper.Map<Trainer>(trainerEntryVm);
+            if (ModelState.IsValid)
+            {
+                bool isUpdated = manager.UpdateTrainer(trainer);
+                if (isUpdated)
+                {
+                    //TrainerEntryVm trainerVm = new TrainerEntryVm();
+                    //trainerVm.OrganizationSelectListItems = GetSelectListItem();
+                    //trainerVm.CourseSelectListItems = GetCourseListItem();
+                    //return PartialView("~\\Views\\Shared\\UpdateTrainer.cshtml", trainerVm);
+                    var data = trainer.Name;
+                    
+                    return Json(data, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            trainerEntryVm.OrganizationSelectListItems = GetSelectListItem();
+            trainerEntryVm.CourseSelectListItems = GetCourseListItem();
+            return PartialView("~\\Views\\Shared\\UpdateTrainer.cshtml", trainerEntryVm);
+           
+        }
+
+        public JsonResult GetTrainer()
+        {
+            var data = manager.GetTrainer();
+            return Json(data.Select(t=>new{t.Id,t.Name}),JsonRequestBehavior.AllowGet);
+        }
+        public byte[] ConvertToBytes(HttpPostedFileBase image)
+        {
+
+            byte[] imageBytes = null;
+
+            BinaryReader reader = new BinaryReader(image.InputStream);
+
+            imageBytes = reader.ReadBytes((int)image.ContentLength);
+
+            return imageBytes;
+
         }
     }
 }

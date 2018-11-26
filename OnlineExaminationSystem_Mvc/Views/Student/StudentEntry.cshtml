@@ -17,6 +17,7 @@
             <div class="col-md-10">
                 @Html.DropDownListFor(c => c.OrganizationId, Model.OrganizationSelectListItems, "----Select---", new {@id = "OrganizationDD", @class = "form-control"})
                 @Html.HiddenFor(c => c.OrganizationId)
+              
             </div>
         </div>
 
@@ -32,7 +33,9 @@
         <div class="form-group">
             <label for="Name" class="col-md-2"> Name: </label>
             <div class="col-md-10">
-                <input type="text" id="Name" name="Name" class="form-control"/>
+               
+                @Html.TextBoxFor(model => model.Name, "", new { @type = "text", @class = "form-control", @id = "Name", @name = "Name" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @style = "color:red" })
             </div>
         </div>
         <div class="form-group">
@@ -46,63 +49,83 @@
         <div class="form-group">
             <label for="ContactNo" class="col-md-2"> Contact No: </label>
             <div class="col-md-10">
-                <input type="text" id="ContactNo" name="ContactNo" class="form-control"/>
+              
+                @Html.TextBoxFor(model => model.ContactNo, "", new { @type = "text", @class = "form-control", @id = "ContactNo", @name = "ContactNo" })
+                @Html.ValidationMessageFor(model => model.ContactNo, "", new { @style = "color:red" })
             </div>
         </div>
         <div class="form-group">
             <label for="Email" class="col-md-2"> Email: </label>
             <div class="col-md-10">
-                <input type="text" id="Email" name="Email" class="form-control"/>
+               
+                @Html.TextBoxFor(model => model.Email, "", new { @type = "text", @class = "form-control", @id = "Email", @name = "Email" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @style = "color:red" })
             </div>
         </div>
         <div class="form-group">
             <label for="Address1" class="col-md-2"> Address Line 1: </label>
             <div class="col-md-10">
-                <input type="text" id="Address1" name="Address1" class="form-control"/>
+                
+                @Html.TextBoxFor(model => model.Address1, "", new { @type = "text", @class = "form-control", @id = "Address1", @name = "Address1" })
+                @Html.ValidationMessageFor(model => model.Address1, "", new { @style = "color:red" })
             </div>
         </div>
         <div class="form-group">
             <label for="Address2" class="col-md-2"> Address Line 2: </label>
             <div class="col-md-10">
-                <input type="text" id="Address2" name="Address2" class="form-control"/>
+               
+                @Html.TextBoxFor(model => model.Address2, "", new { @type = "text", @class = "form-control", @id = "Address2", @name = "Address2" })
+                @Html.ValidationMessageFor(model => model.Address2, "", new { @style = "color:red" })
             </div>
         </div>
 
         <div class="form-group">
             <label for="City" class="col-md-2"> City: </label>
             <div class="col-md-10">
-                <input type="text" id="City" name="City" class="form-control"/>
+                
+                @Html.TextBoxFor(model => model.City, "", new { @type = "text", @class = "form-control", @id = "City", @name = "City" })
+                @Html.ValidationMessageFor(model => model.City, "", new { @style = "color:red" })
             </div>
         </div>
 
         <div class="form-group">
             <label for="PostalCode" class="col-md-2"> Postal Code: </label>
             <div class="col-md-10">
-                <input type="text" id="PostalCode" name="PostalCode" class="form-control"/>
+              
+                @Html.TextBoxFor(model => model.PostalCode, "", new { @type = "text", @class = "form-control", @id = "PostalCode", @name = "PostalCode" })
+                @Html.ValidationMessageFor(model => model.PostalCode, "", new { @style = "color:red" })
             </div>
         </div>
         <div class="form-group">
             <label for="Country" class="col-md-2"> Country: </label>
             <div class="col-md-10">
-                <input type="text" id="Country" name="Country" class="form-control"/>
+               
+                @Html.TextBoxFor(model => model.Country, "", new { @type = "text", @class = "form-control", @id = "Country", @name = "Country" })
+                @Html.ValidationMessageFor(model => model.Country, "", new { @style = "color:red" })
             </div>
         </div>
         <div class="form-group">
             <label for="Profession" class="col-md-2"> Profession: </label>
             <div class="col-md-10">
-                <input type="text" id="Profession" name="Profession" class="form-control"/>
+              
+                @Html.TextBoxFor(model => model.Profession, "", new { @type = "text", @class = "form-control", @id = "Profession", @name = "Profession" })
+                @Html.ValidationMessageFor(model => model.Profession, "", new { @style = "color:red" })
             </div>
         </div>
         <div class="form-group">
             <label for="HighestAcademic" class="col-md-2"> HighestAcademic: </label>
             <div class="col-md-10">
-                <input type="text" id="HighestAcademic" name="HighestAcademic" class="form-control"/>
+               
+                @Html.TextBoxFor(model => model.HighestAcademic, "", new { @type = "text", @class = "form-control", @id = "HighestAcademic", @name = "HighestAcademic" })
+                @Html.ValidationMessageFor(model => model.HighestAcademic, "", new { @style = "color:red" })
             </div>
         </div>
         <div class="form-group">
-            <label for="Image" class="col-md-2"> Image: </label>
+            <label for="Logo" class="col-md-2"> Image: </label>
             <div class="col-md-10">
-                <input type="file" id="Logo" name="Logo" class="form-control"/>
+                <input type="file" id="Logo" name="Logo" class="form-control" />
+                @*@Html.TextBoxFor(model => model.Image, new { @type = "file", @class = "form-control", @id = "Logo", @name = "Logo" })*@
+                @Html.ValidationMessageFor(model => model.Image, "", new { @style = "color:red" })
             </div>
         </div>
 

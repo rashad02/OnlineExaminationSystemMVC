@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+
 
 
 @*<div class="container">
@@ -68,32 +68,36 @@
                 <div class="form-group">
                     <label for="CourseName" class="col-md-2"> Name: </label>
                     <div class="col-md-10">
-                        <input type="text" id="CourseName" name="CourseName" value="@Model.CourseName" class="form-control" />
+                        @Html.TextBoxFor(model => model.CourseName, new { type = "text", @class = "form-control", @id = "CourseName" })
+                        @Html.ValidationMessageFor(c => c.CourseName, "", new { @style = "color:red" })
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="CourseCode" class="col-md-2"> Course Code: </label>
                     <div class="col-md-10">
-                        <input type="text" id="CourseCode" name="CourseCode" value="@Model.CourseCode" class="form-control" />
-
+                        @Html.TextBoxFor(model => model.CourseCode, new { type = "text", @class = "form-control", @id = "CourseCode" })
+                        @Html.ValidationMessageFor(c => c.CourseCode, "", new { @style = "color:red" })
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="Duration" class="col-md-2"> Duration: </label>
                     <div class="col-md-10">
-                        <input type="text" id="Duration" name="Duration" value="@Model.Duration" class="form-control" />
+                        @Html.TextBoxFor(model => model.Duration, new { type = "text", @class = "form-control", @id = "Duration" })
+                        @Html.ValidationMessageFor(model => model.Duration, "", new { @style = "color:red" })
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="Credit" class="col-md-2"> Credit: </label>
                     <div class="col-md-10">
-                        <input type="text" id="Credit" name="Credit" value="@Model.Credit" class="form-control" />
+                        @Html.TextBoxFor(model => model.Credit, new { type = "text", @class = "form-control", @id = "Credit" })
+                        @Html.ValidationMessageFor(model => model.Credit, "", new { @style = "color:red" })
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="Outline" class="col-md-2"> Outline: </label>
                     <div class="col-md-10">
-                        <input type="text" id="Outline" name="Outline" value="@Model.Outline" class="form-control" />
+                        @Html.TextBoxFor(model => model.Outline, new { type = "text", @class = "form-control", @id = "Outline" })
+                        @Html.ValidationMessageFor(model => model.Outline, "", new { @style = "color:red" })
                     </div>
                 </div>
                 <div class="form-group">

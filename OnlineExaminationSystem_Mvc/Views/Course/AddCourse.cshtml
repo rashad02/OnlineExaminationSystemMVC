@@ -1,5 +1,9 @@
-﻿@using System.Web.Mvc.Html
+﻿@using System.Net.Mime
+@using System.Web.Mvc.Ajax
+@using System.Web.Mvc.Html
 @using Models
+@using OnlineExaminationSystem_Mvc.ViewModels.Course
+@using OnlineExaminationSystem_Mvc.ViewModels.Exam
 @model OnlineExaminationSystem_Mvc.ViewModels.Course.CourseEntryVm
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -103,7 +107,7 @@
                         <label for="Trainer" class="col-md-2"> Trainer: </label>
                         <div class="col-md-6" id="TrainerDropDown">
 
-                            @Html.DropDownListFor(c => c.SelectTrainerListItem, Model.SelectTrainerListItem, "----Select---", new { @id = "Trainer", @class = "form-control" })
+                            @Html.DropDownListFor(c => c.SelectTrainerListItem, Model.SelectTrainerListItem, "----Select---", new {@id = "Trainer", @class = "form-control"})
                             @Html.HiddenFor(c => c.TrainerId)
                         </div>
                         <div class="col-md-2"></div>
@@ -117,22 +121,23 @@
                                 <div class="panel-title">Added Trainer for @Model.CourseName</div>
                             </div>
                             <div class="panel-body">
-                                <table class="table table-bordered table-hover table-striped table-responsive">
+                                <table class="table table-bordered table-hover table-striped table-responsive" id="tranierDetailsTable">
 
                                     <thead>
-                                        <tr style="background-color: green; color: white; font-weight: bold">
-                                            <td>Sl</td>
-                                            <td>Name</td>
-                                            <td>Lead Trainer?</td>
-                                            <td>Action</td>
-                                        </tr>
+                                    <tr style="background-color: green; color: white; font-weight: bold">
+                                        <td>Sl</td>
+                                        <td>Name</td>
+                                        <td>Lead Trainer?</td>
+                                        <td>Action</td>
+                                    </tr>
                                     </thead>
 
                                     <tbody id="tranierDetailsBody"></tbody>
                                 </table>
+                                <input type="hidden" id="rowIndexTrainer" />
                                 <div class="form-group">
                                     <div class="row" style="margin-left: 18px">
-                                        <input type="submit" value="Save" id="SaveTrainerButton" class="btn btn-info col-md-offset-2" />
+                                        <input type="submit" value="Save" id="SaveTrainerButton" class="btn btn-info col-md-offset-2"/>
                                     </div>
                                 </div>
                             </div>
@@ -140,21 +145,76 @@
                     </div>
 
                 </div>
+
+                @*<div class="modal modal-info" id="OptionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+                    <div class="modal-dialog form-login" role="form">
+                        <!--Content-->
+                       
+                        <div class="text-white rgba-stylish-strong ">
+                            <!--Header-->
+                            <div class="modal-header text-center">
+                                <h3 class="modal-title w-100 white-text font-weight-bold" id="myModalLabel">
+                                    <strong>Options for Question</strong>
+                                </h3>
+                                <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <!--Body-->
+                            <div class="modal-body" id="modalContent" style="width: 80%" >
+                                <!--Body-->
+
+                            </div>
+
+                            </div>
+                        </div>
+                       
+                     </div>*@
+
+
+
+         <div class="modal fade" id="OptionModal" role="dialog">
+             <div class="modal-dialog modal-lg">
+                 <div class="modal-content">
+                     <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                         <h4 class="modal-title centered">Trainer Edit</h4>
+                     </div>
+              @using (Ajax.BeginForm("TrainerUpdate", "Course", new AjaxOptions { HttpMethod = "POST", OnSuccess = "onChangeSuccess(data)" }, new { enctype = "multipart/form-data" }))
+              {
+                  <div class="modal-body" id="modalContent">
+
+                  </div>
+              }
+                 </div>
+             </div>
+         </div>
+               
             </section>
         <section id="tab3" class="tab-content hide">
+            @*@{
+                Html.RenderAction("CourseExamAdd", "Course",FormMethod.Get);
+            }*@
+            
 
+            @using (Ajax.BeginForm("ExamAssign", "Course", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "PartialViewExam", OnSuccess = "onSaveSuccess(data)" }))
+            {
+            
+                <div id="PartialViewExam">
+                    @{
+                        Html.RenderAction("CourseExamAdd","Course",FormMethod.Get);
+                    }
+                </div>
+            }
 
-            <div class="container">
+            @*<div class="container">
                 <form method="POST">
                     <h2> Exam Entry</h2>
-                    <hr />
-
-
-
+                    <hr />             
                     <div class="form-horizontal">
                         <div class="form-group">
                             <label for="OrganizationDD" class="col-md-2"> Organization: </label>
-                            <div class="col-md-10">
+                            <div class="col-md-8">
                                 @{
                                     string Organization = "";
 
@@ -166,12 +226,12 @@
                                 }
                                 @Html.DropDownListFor(c => c.SelectListItems, Model.SelectListItems, Organization, new { @id = "OrganizationDD", @class = "form-control", @disabled = true })
 
-
+                                
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="CourseId" class="col-md-2"> Course: </label>
-                            <div class="col-md-10">
+                            <div class="col-md-8">
                                 @Html.DropDownListFor(c => c.SelectCourseSelectListItemsListItems, Model.SelectCourseSelectListItemsListItems, @Model.CourseName, new { @id = "CourseTB", @class = "form-control", @disabled = true })
 
 
@@ -182,30 +242,33 @@
                         </div>
                         <div class="form-group">
                             <label for="ExamType" class="col-md-2"> Exam Type </label>
-                            <div class="col-md-10">
+                            <div class="col-md-8">
                                 @Html.DropDownListFor(c => c.ExamTypeSelectListItems, Model.ExamTypeSelectListItems, "----Select---", new { @class = "form-control", @id = "ExamTypeDD" })
-
+                                <input type="hidden" id="examId"/>
+                                <input type="hidden" id="rowIndex"/>
                             </div>
 
                         </div>
 
                         <div class="form-group">
                             <label for="ExamCode" class="col-md-2"> Code: </label>
-                            <div class="col-md-10">
-                                <input type="text" id="ExamCode" name="ExamCode" class="form-control" />
+                            <div class="col-md-8">
+                                <input type="text" id="ExamCode" name="ExamCode" class="form-control"/>
+                            
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Topic" class="col-md-2"> Topic: </label>
-                            <div class="col-md-10">
+                            <div class="col-md-8">
                                 <input type="text" id="Topic" name="Topic" class="form-control" />
-
+                              
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="FullMarks" class="col-md-2"> Full Marks: </label>
-                            <div class="col-md-10">
-                                <input type="text" id="FullMarks" name="FullMarks" class="form-control" />
+                            <div class="col-md-8">
+                                <input type="text" id="FullMarks" name="FullMarks" class="form-control"/>
+                               
                             </div>
                         </div>
 
@@ -213,13 +276,14 @@
                             <label for="Duration" class="col-md-2"> Duration: </label>
                             <div class="col-xs-2">
                                 <input class="form-control" id="Hour" name="Hour" type="text">
+                             
                             </div>
                             <label class="col-sm-1" style="line-height: 2.5; width: 0%"> : </label>
                             <div class="col-xs-2 col-md-offset-0">
 
                                 <input class="form-control" id="Minute" name="Minute" type="text">
                             </div>
-
+                          
                         </div>
                         <div class="form-group">
 
@@ -229,28 +293,30 @@
                         </div>
 
 
+                        <div class="col-md-10">
+                            <table class="table table-bordered table-hover table-striped table-responsive" id="OptionTable">
 
-                        <table class="table table-bordered table-hover table-striped table-responsive" id="OptionTable">
+                                <thead>
+                                    <tr style="background-color: blue; color: white; font-weight: bold">
+                                        <td hidden="hidden">Exam Id </td>
+                                        <td>Exam Type</td>
+                                        <td>Topic</td>
+                                        <td>Exam Code</td>
+                                        <td>Duration</td>
+                                        <td>Full Marks</td>
+                                        <td>Action</td>
+                                     
+                                    </tr>
+                                </thead>
 
-                            <thead>
-                                <tr style="background-color: blue; color: white; font-weight: bold">
-                                    <td>Exam Type</td>
-                                    <td>Topic</td>
-                                    <td>Exam Code</td>
-                                    <td>Duration</td>
-                                    <td>Full Marks</td>
-                                    <td>Action</td>
-                                </tr>
-                            </thead>
-
-                            <tbody id="CourseExamTable"></tbody>
-                        </table>
-
+                                <tbody id="CourseExamTable"></tbody>
+                            </table>
+                        </div>
 
                     </div>
                 </form>
 
-            </div>
+            </div>*@
         </section>
 
 @section scripts{
@@ -258,6 +324,9 @@
 
 
 <script src="~/Scripts/jquery-1.9.1.min.js"></script>*@
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 <script src="~/Scripts/AppData/Course/Entry.js"></script>
 

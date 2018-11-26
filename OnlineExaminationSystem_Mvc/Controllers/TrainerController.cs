@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -29,22 +30,65 @@ namespace OnlineExaminationSystem_Mvc.Controllers
         [HttpPost]
         public ActionResult TrainerEntry(TrainerEntryVm trainerEntryVm)
         {
-            trainerEntryVm.OrganizationSelectListItems = GetOrganizationListItem();
-            trainerEntryVm.CourseSelectListItems = GetCourseListItem();
-            var trainer = Mapper.Map<Trainer>(trainerEntryVm);
-            var organization = trainerManager.GetOrganizationsById(trainerEntryVm.OrganizationId);
-            var course = trainerManager.GetCoursesById(trainerEntryVm.CourseId);
-            trainer.Organizations = organization.ToList();
-            trainer.Courses = course.ToList();
-
-            bool isSaved = trainerManager.SaveStudent(trainer);
-            if (isSaved)
+            if (ModelState.IsValid)
             {
-                return View(trainerEntryVm);
-            }
+                HttpPostedFileBase file = Request.Files["Logo"];
+                trainerEntryVm.Image = ConvertToBytes(file);
+                trainerEntryVm.OrganizationSelectListItems = GetOrganizationListItem();
+                trainerEntryVm.CourseSelectListItems = GetCourseListItem();
+                var trainer = Mapper.Map<Trainer>(trainerEntryVm);
+                var organization = trainerManager.GetOrganizationsById(trainerEntryVm.OrganizationId);
+                var course = trainerManager.GetCoursesById(trainerEntryVm.CourseId);
+                trainer.Organizations = organization.ToList();
+                trainer.Courses = course.ToList();
 
+                bool isSaved = trainerManager.SaveStudent(trainer);
+                if (isSaved)
+                {
+                    return View(trainerEntryVm);
+                }
+
+            }
+           
 
             return View(trainerEntryVm);
+        }
+        public byte[] ConvertToBytes(HttpPostedFileBase image)
+        {
+
+            byte[] imageBytes = null;
+
+            BinaryReader reader = new BinaryReader(image.InputStream);
+
+            imageBytes = reader.ReadBytes((int)image.ContentLength);
+
+            return imageBytes;
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TrainerUpdate(TrainerEntryVm trainerEntryVm)
+        {
+            HttpPostedFileBase file = Request.Files["Logo"];
+            trainerEntryVm.Image = ConvertToBytes(file);
+            var trainer = Mapper.Map<Trainer>(trainerEntryVm);
+            if (ModelState.IsValid)
+            {
+                bool isUpdated = trainerManager.UpdateTrainer(trainer);
+                if (isUpdated)
+                {
+                    TrainerEntryVm trainerVm=new TrainerEntryVm();
+                    trainerVm.OrganizationSelectListItems = GetOrganizationListItem();
+                    trainerVm.CourseSelectListItems = GetCourseListItem();
+                    return PartialView("~\\Views\\Shared\\UpdateTrainer.cshtml", trainerVm);
+                }
+            }
+            return Json(new {
+            status = "failure",
+            formErrors = ModelState.Select(kvp => new { key = kvp.Key, errors = kvp.Value.Errors.Select(e => e.ErrorMessage)})
+            });
+       
         }
 
 

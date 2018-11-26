@@ -1,0 +1,148 @@
+﻿@using System.Web.Mvc.Html
+@model OnlineExaminationSystem_Mvc.ViewModels.Trainer.TrainerEntryVm
+@{
+    Layout = null;
+}
+
+
+
+
+
+
+@*@using (Ajax.BeginForm("TrainerUpdate", "Trainer", new AjaxOptions { HttpMethod = "POST", OnSuccess = "onChangeSuccess", UpdateTargetId = "modalContent" }, new { enctype = "multipart/form-data" }))
+{*@
+    
+    <div class="form-horizontal">
+        @*<div class="form-group">
+            <label for="OrganizationId" class="col-md-2"> Organization: </label>
+            <div class="col-md-10">
+                @{
+                                    string Organization = "";
+
+                                    foreach (var organizationName in Model.Organizations)
+                                    {
+                                        Organization = organizationName.Name;
+
+                                    }
+                }
+                @Html.DropDownListFor(c => c.OrganizationId, Model.OrganizationSelectListItems, Organization, new { @id = "OrganizationDD", @class = "form-control" })
+                @Html.HiddenFor(c => c.OrganizationId)
+                
+
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Courses" class="col-md-2"> Course: </label>
+            <div class="col-md-10">
+                @{
+                                    string CoursName = "";
+
+                                    foreach (var courseName in Model.Courses)
+                                    {
+                                        CoursName = courseName.CourseName;
+
+                                    }
+                }
+                @Html.DropDownListFor(c => c.CourseId, Model.CourseSelectListItems, CoursName, new { @class = "form-control", @id = "CourseDD", @name = "Courses" })
+                @Html.HiddenFor(c => c.CourseId)
+            </div>
+
+        </div>*@
+
+        <div class="form-group">
+            <label for="Name" class="col-md-2"> Name: </label>
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(model => model.Name, Model.Name, new {@type = "text", @class = "form-control", @id = "Name", @name = "Name"})
+                @Html.ValidationMessageFor(model => model.Name, "", new {@style = "color:red"})
+                @Html.HiddenFor(c => c.Id)
+               
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ContactNo" class="col-md-2"> Contact No: </label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ContactNo, Model.ContactNo, new {@type = "text", @class = "form-control", @id = "ContactNo", @name = "ContactNo"})
+                @Html.ValidationMessageFor(model => model.ContactNo, "", new {@style = "color:red"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Email" class="col-md-2"> Email: </label>
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(model => model.Email, Model.Email, new {@type = "text", @class = "form-control", @id = "Email", @name = "Email"})
+                @Html.ValidationMessageFor(model => model.Email, "", new {@style = "color:red"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Address1" class="col-md-2"> Address Line 1: </label>
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(model => model.Address1, Model.Address1, new {@type = "text", @class = "form-control", @id = "Address1", @name = "Address1"})
+                @Html.ValidationMessageFor(model => model.Address1, "", new {@style = "color:red"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Address2" class="col-md-2"> Address Line 2: </label>
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(model => model.Address2, Model.Address2, new {@type = "text", @class = "form-control", @id = "Address2", @name = "Address2"})
+                @Html.ValidationMessageFor(model => model.Address2, "", new {@style = "color:red"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="City" class="col-md-2"> City: </label>
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(model => model.City, Model.City, new {@type = "text", @class = "form-control", @id = "City", @name = "City"})
+                @Html.ValidationMessageFor(model => model.City, "", new {@style = "color:red"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="PostalCode" class="col-md-2"> Postal Code: </label>
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(model => model.PostalCode, Model.PostalCode.ToString(), new {@type = "text", @class = "form-control", @id = "PostalCode", @name = "PostalCode"})
+                @Html.ValidationMessageFor(model => model.PostalCode, "", new {@style = "color:red"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Country" class="col-md-2"> Country: </label>
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(model => model.Country, Model.Country, new {@type = "text", @class = "form-control", @id = "Country", @name = "Country"})
+                @Html.ValidationMessageFor(model => model.Country, "", new {@style = "color:red"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Logo" class="col-md-2"> Image: </label>
+            <div class="col-md-10">
+                <input type="file" id="Logo" name="Logo" class="form-control"/>
+                @*@Html.TextBoxFor(model => model.Image,null, new { @type = "file", @class = "form-control", @id = "Logo", @name = "Logo" })*@
+                @Html.ValidationMessageFor(model => model.Image, "", new {@style = "color:red"})
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row" style="margin-left: 17px">
+                <input type="submit" value="Update" id="SaveButton" class="btn btn-primary col-md-2 col-md-offset-2"/>
+            </div>
+        </div>
+    </div>
+
+@section scripts{
+    @*<script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/jquery-1.9.1.min.js"></script>*@
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+   
+<script src="~/Scripts/AppData/Batch/Entry.js"></script>
+@*<script src="~/Scripts/AppData/Course/Entry.js"></script>*@
+
+}
